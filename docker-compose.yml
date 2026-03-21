@@ -1,0 +1,73 @@
+name: "sadik"
+services:
+  nginx:
+    container_name: "nginx"
+    image: nginx:1.29.6
+    ports:
+      - "8080:80"
+    depends_on:
+      web:
+        condition: service_healthy
+  web:
+    container_name: "web"
+    build: ./web
+    environment:
+      env: env
+    command: "pnpm start"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "http://web:3000/api/health"]
+      interval: 10s
+      timeout: 15s
+      retries: 5
+      start_period: 15s
+  backend:
+    container_name: "backend"
+    build: ./backend
+    environment:
+      PORT: "4000"
+      DATABASE_URL: "postgresql://Tea:Tea@db/sadik?schema=public"
+    command: sh -c "pnpm prisma db push && pnpm start"
+    healthcheck:
+      test: ["CMD", "curl", "http://backend:4000/"]
+      interval: 10s
+      timeout: 15s
+      retries: 5
+      start_period: 15s
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+  db:
+    container_name: "db"
+    image: postgres:18.3
+    environment:
+      POSTGRES_DB: sadik
+      POSTGRES_PASSWORD: Tea
+      POSTGRES_USER: Tea
+    volumes:
+      - postgres_data:/var/lib/postgresql/18/docker
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+  redis:
+    container_name: "redis"
+    image: redis:8.6.1
+    command: sh -c redis-server "--requiredpass Tea"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+volumes:
+  postgres_data:
+  redis_data:
