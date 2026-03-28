@@ -1,9 +1,9 @@
-export const NutritionIcon = () => {
+export const NutritionIcon = ({ size }: { size: "sm" | "md" | "lg" }) => {
   return (
     <svg
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      className={"fill-none w-6 h-6"}
+      className={`fill-none ${size === "sm" ? "w-4 h-4" : size === "md" ? "w-5 h-5" : "w-6 h-6"}`}
     >
       <path
         d="M16.0001 2L13.7001 4.3C13.1504 4.86079 12.8425 5.61474 12.8425 6.4C12.8425 7.18526 13.1504 7.93921 13.7001 8.5L15.5001 10.3C16.0609 10.8497 16.8148 11.1576 17.6001 11.1576C18.3854 11.1576 19.1393 10.8497 19.7001 10.3L22.0001 8"

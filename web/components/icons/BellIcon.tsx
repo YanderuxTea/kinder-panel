@@ -1,9 +1,9 @@
-export const BellIcon = () => {
+export const BellIcon = ({ size }: { size: "sm" | "md" }) => {
   return (
     <svg
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      className={"fill-none w-6 h-6"}
+      className={`fill-none pointer-events-none ${size === "sm" ? "w-5 h-5" : size === "md" ? "w-6 h-6" : ""}`}
     >
       <path
         d="M10.2681 21C10.4436 21.304 10.6961 21.5565 11.0001 21.732C11.3041 21.9075 11.649 21.9999 12.0001 21.9999C12.3511 21.9999 12.696 21.9075 13 21.732C13.3041 21.5565 13.5565 21.304 13.7321 21"

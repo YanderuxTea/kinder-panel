@@ -1,8 +1,8 @@
-export const ShieldIcon = () => {
+export const ShieldIcon = ({ size }: { size: "md" | "lg" }) => {
   return (
     <svg
       viewBox="0 0 24 24"
-      className={"fill-none w-6 h-6"}
+      className={`fill-none ${size === "md" ? "w-5 h-5" : "w-6 h-6"} `}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

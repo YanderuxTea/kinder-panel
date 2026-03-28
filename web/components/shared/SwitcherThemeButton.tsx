@@ -1,29 +1,12 @@
 "use client";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "@/components/icons";
-import { useEffect, useState } from "react";
 
 export default function SwitcherThemeButton() {
-  const { setTheme, theme } = useTheme();
-  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const { setTheme, resolvedTheme } = useTheme();
   function toggleTheme() {
-    switch (theme) {
-      case "dark":
-        setTheme("light");
-        break;
-      case "light":
-        setTheme("dark");
-    }
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      setIsMounted(true);
-    });
-  }, []);
-
-  const iconTheme =
-    theme === "dark" ? <Sun /> : theme === "light" ? <Moon /> : null;
-  if (!isMounted) return <div className={"w-9 h-9"}></div>;
 
   return (
     <button
@@ -34,7 +17,12 @@ export default function SwitcherThemeButton() {
         "cursor-pointer"
       }
     >
-      {iconTheme}
+      <div className={"hidden dark:block"}>
+        <Sun />
+      </div>
+      <div className={"dark:hidden block"}>
+        <Moon />
+      </div>
     </button>
   );
 }

@@ -12,7 +12,8 @@ services:
     container_name: "web"
     build: ./web
     environment:
-      env: env
+      BACKEND_URL: "http://backend:4000"
+      JWT_SECRET: "YanderuxTea"
     command: "pnpm start"
     depends_on:
       backend:
@@ -29,6 +30,12 @@ services:
     environment:
       PORT: "4000"
       DATABASE_URL: "postgresql://Tea:Tea@db/sadik?schema=public"
+      FRONTEND_URL: "http://web:4000"
+      REDIS_PORT: "6379"
+      REDIS_HOST: "redis"
+      REDIS_PASSWORD: "Tea"
+      JWT_SECRET: "YanderuxTea"
+
     command: sh -c "pnpm prisma db push && pnpm start"
     healthcheck:
       test: ["CMD", "curl", "http://backend:4000/"]
@@ -68,6 +75,13 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+  redis_adminer:
+    container_name: "redis_adminer"
+    image: redis/redisinsight:latest
+    depends_on:
+      redis:
+        condition: service_healthy
+
 volumes:
   postgres_data:
   redis_data:

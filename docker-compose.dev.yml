@@ -11,3 +11,6 @@ services:
   backend:
     ports:
       - "4000:4000"
+  redis_adminer:
+    ports:
+      - "5540:5540"

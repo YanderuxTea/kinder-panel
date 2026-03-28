@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { ReactNode } from "react";
 import { headers } from "next/headers";
 import { nunito } from "@/lib/font";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Киндер | Главная",
@@ -31,6 +32,7 @@ export default async function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
+          <Toaster position={"top-center"} richColors={true} />
           {children}
         </ThemeProvider>
       </body>

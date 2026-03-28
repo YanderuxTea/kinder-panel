@@ -15,7 +15,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.1-red?style=flat-square)](https://github.com/your-username/your-repo)
+[![Project Version](https://img.shields.io/badge/version-alpha_0.2-red?style=flat-square)](https://github.com/your-username/your-repo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -23,17 +23,17 @@
 <h2>RoadMap</h2>
 
 - [x] Настройка и контейниризация проекта
-- [ ] Схема БД
-- [ ] Регистрация садика + логика 14 дневного триала
-- [ ] Разделение на роли (Администратор | Администратор садика | Воспитатель | Родитель)
-- [ ] Кэширование сессий
-- [ ] Главная страница
-- [ ] Страницы входа / регистрации / сброса пароля
+- [x] Схема БД
+- [x] Регистрация садика + логика 14 дневного триала
+- [x] Разделение на роли (Администратор | Администратор садика | Воспитатель | Родитель)
+- [x] Кэширование сессий
+- [x] Главная страница
+- [x] Страницы входа / регистрации / сброса пароля
 - [ ] Интерфейс Супер-админа
-- [ ] Подтверждение садиков и выдача роли администратора садика. Управление подписками
+- [ ] Управление подписками
 - [ ] Создание групп
 - [ ] Создание аккаунтов воспитателей и родителей администратором садика
-- [ ] Личный кабинет для пользователей
+- [x] Личный кабинет для пользователей
 - [ ] Страница создания меню садика для администраторов садика
 - [ ] Возможность заранее отмечать родителям статусы (опоздает/не придет) с причиной
 - [ ] Возможность составлять отчет посещения воспитателю

@@ -15,7 +15,7 @@ type CardData = {
 };
 export const featuresCardData: CardData[] = [
   {
-    icon: ShieldIcon(),
+    icon: ShieldIcon({ size: "lg" }),
     title: "Безопасность прежде всего",
     description:
       "Отслеживание входа/выхода в реальном времени с мгновенными уведомлениями родителям. Всегда знайте, что ваш ребенок в безопасности.",
@@ -23,7 +23,7 @@ export const featuresCardData: CardData[] = [
     colorBadge: "bg-mint-light-light dark:bg-mint-dark/20",
   },
   {
-    icon: NutritionIcon(),
+    icon: NutritionIcon({ size: "lg" }),
     title: "Отслеживание питания",
     description:
       "Полные расписания приема пищи, диетические требования и информация о питании. Родители всегда знают, что ест их ребенок.",
@@ -31,7 +31,7 @@ export const featuresCardData: CardData[] = [
     colorBadge: "bg-sunshine-light-light dark:bg-sunshine-dark/20",
   },
   {
-    icon: BellIcon(),
+    icon: BellIcon({ size: "md" }),
     title: "Мгновенные объявления",
     description:
       "Важные обновления, напоминания о событиях и экстренные уведомления, доставляемые мгновенно всем родителям.",
