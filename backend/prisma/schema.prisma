@@ -1,8 +1,137 @@
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum UserRole {
+  gl_admin
+  sad_admin
+  staff
+  user
+}
+
+enum StatusAttendance {
+  came
+  absent
+  sick
+}
+
+model User {
+  id                  String         @id @default(uuid(7))
+  email               String         @unique
+  password            String
+  login               String         @unique
+  fullname            String
+  address             String?
+  tel                 String?
+  role                UserRole       @default(sad_admin)
+  children            Children[]
+  kindergartenId      String?
+  kindergarten        Kindergarten?  @relation("user", fields: [kindergartenId], references: [id], onDelete: Cascade)
+  kindergartenOwn     Kindergarten[] @relation("owner")
+  groupId             String?
+  group               Group?         @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  recoveryCode        String?
+  recoveryCodeExpires DateTime?
+  notifications       Notification[]
+
+  advertisements Advertisements[]
+
+  devices Devices[]
+}
+
+model Kindergarten {
+  id              String      @id @default(uuid(7))
+  address         String      @unique
+  name            String
+  isFreeTier      Boolean     @default(true)
+  endSubscription DateTime
+  ownerId         String
+  owner           User        @relation("owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  users           User[]      @relation("user")
+  nutrition       Nutrition[]
+
+  groups Group[]
+}
+
+model Children {
+  id          String       @id @default(uuid(7))
+  name        String
+  surname     String
+  dateOfBirth DateTime
+  groupId     String
+  group       Group        @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  parents     User[]
+  attendances Attendance[]
+}
+
+model Group {
+  id             String       @id @default(uuid(7))
+  name           String
+  users          User[]
+  kindergartenId String
+  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id])
+  childrens      Children[]
+
+  notifications Notification[]
+
+  advertisements Advertisements[]
+}
+
+model Attendance {
+  id         String           @id @default(uuid(7))
+  mark       StatusAttendance
+  childrenId String
+  children   Children         @relation(fields: [childrenId], references: [id], onDelete: Cascade)
+  createdAt  DateTime
+
+  @@unique([childrenId, createdAt])
+}
+
+model Nutrition {
+  id                  String       @id @default(uuid(7))
+  dayWeek             Int
+  breakfast           String
+  secondBreakfast     String
+  lunch               String
+  afternoonSnack      String
+  breakfastTime       Int
+  secondBreakfastTime Int
+  lunchTime           Int
+  afternoonSnackTime  Int
+  kindergartenId      String
+  kindergarten        Kindergarten @relation(fields: [kindergartenId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String  @id @default(uuid(7))
+  isRead    Boolean @default(false)
+  authorId  String
+  author    User    @relation(fields: [authorId], references: [id])
+  toGroupId String
+  toGroup   Group   @relation(fields: [toGroupId], references: [id])
+}
+
+model Advertisements {
+  id        String @id @default(uuid(7))
+  authorId  String
+  author    User   @relation(fields: [authorId], references: [id])
+  toGroupId String
+  toGroup   Group  @relation(fields: [toGroupId], references: [id])
+  text      String
+}
+
+model Devices {
+  id        String   @id @default(uuid(7))
+  sessionId String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String
+  expiresAt DateTime
+
+  @@index([sessionId])
 }

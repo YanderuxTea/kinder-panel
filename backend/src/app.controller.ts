@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppService } from './app.service.js';
 import { ConfigService } from '@nestjs/config';
 
 @Controller()
@@ -9,7 +9,7 @@ export class AppController {
     private readonly appService: AppService,
   ) {}
   @Get()
-  healthCheck(): string {
+  healthCheck() {
     return this.appService.healthCheck();
   }
 }
