@@ -46,10 +46,14 @@ export default function ChangeSubscribeForm({
   }
   const [price, setPrice] = useState<number>(0);
   function checkPrice(value: string) {
+    const currentDate = new Date().setHours(0, 0, 0, 0);
     const currDateSub = new Date(currentEndSub).setHours(0, 0, 0, 0);
     const newDateSub = new Date(value).setHours(0, 0, 0, 0);
     const oneDay = 1000 * 60 * 60 * 24;
-    const diff = Math.ceil((newDateSub - currDateSub) / oneDay);
+    const diff =
+      currentDate > currDateSub
+        ? Math.ceil((newDateSub - currentDate) / oneDay)
+        : Math.ceil((newDateSub - currDateSub) / oneDay);
     const priceOneDay = 165;
     setPrice(diff * priceOneDay);
   }
