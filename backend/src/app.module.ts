@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { GardenModule } from './garden/garden.module.js';
 import { CommonModule } from './common.module.js';
 import { SettingsModule } from './settings/settings.module.js';
+import { AdminPanelModule } from './admin-panel/admin-panel.module.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { SettingsModule } from './settings/settings.module.js';
     GardenModule,
     CommonModule,
     SettingsModule,
+    AdminPanelModule,
   ],
   controllers: [AppController],
   providers: [AppService],

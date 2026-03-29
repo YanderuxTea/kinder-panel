@@ -22,7 +22,7 @@ export default async function DashboardPage({
   const panelComponent: Record<string, ReactNode> = {
     main: <MainPanel fullname={fullname} role={role} />,
     settings: <SettingsPanel fullname={fullname} role={role} login={login} />,
-    adminPanel: <AdminPanel />,
+    adminsPanel: <AdminPanel />,
     visits: <VisitsPanel />,
     nutrition: <NutritionPanel />,
     groups: <GroupsPanel />,

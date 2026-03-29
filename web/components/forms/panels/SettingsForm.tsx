@@ -209,7 +209,7 @@ export default function SettingsForm({
         type="submit"
         className={
           "h-12 bg-primary-light dark:bg-primary-dark w-full hover:bg-primary-light/90" +
-          " dark:hover:bg-primary-dark/90"
+          " dark:hover:bg-primary-dark/90 text-primary-light-foreground dark:text-primary-dark-foreground font-medium"
         }
       >
         Сохранить

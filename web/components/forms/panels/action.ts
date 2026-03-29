@@ -67,3 +67,18 @@ export async function changePassword({
   const res: { ok: false; message: string } | { ok: true } = await req.json();
   return res;
 }
+export async function changeSubscription(newDate: Date, id: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/admin-panel/change-subscriptions`,
+    {
+      method: "POST",
+      body: JSON.stringify({ token: token, id: id, newDate: newDate }),
+      headers: { "content-type": "application/json" },
+    },
+  );
+  const res: { ok: boolean } = await req.json();
+  console.log(res);
+  return res;
+}

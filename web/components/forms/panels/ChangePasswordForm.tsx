@@ -60,7 +60,7 @@ export default function ChangePasswordForm({ login }: { login: string }) {
         type="submit"
         className={
           "h-12 bg-primary-light dark:bg-primary-dark hover:bg-primary-light/90" +
-          " dark:hover:bg-primary-dark/90"
+          " dark:hover:bg-primary-dark/90 text-primary-light-foreground dark:text-primary-dark-foreground font-medium"
         }
       >
         Сменить пароль

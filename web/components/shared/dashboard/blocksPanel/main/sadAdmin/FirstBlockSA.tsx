@@ -35,7 +35,7 @@ export default function FirstBlockSA() {
   });
 
   return (
-    <div className={"h-125 flex flex-col"}>
+    <div className={" flex flex-col"}>
       <div
         className={
           "flex flex-row justify-between items-center mb-6 select-none"
@@ -65,6 +65,7 @@ export default function FirstBlockSA() {
           <p className={"animate-pulse"}>Загрузка...</p>
         ) : kindergartens.length > 0 ? (
           <Virtuoso
+            style={{ height: 450 }}
             className={"w-full"}
             totalCount={kindergartens.length}
             data={kindergartens}

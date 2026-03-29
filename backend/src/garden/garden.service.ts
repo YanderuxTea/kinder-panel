@@ -91,8 +91,7 @@ export class GardenService {
       });
       const existingCache = await this.redis.get(redisKey);
       if (existingCache) {
-        const kindergartens = JSON.parse(existingCache);
-        kindergartens.push(kindergarten);
+        const kindergartens = [kindergarten, ...JSON.parse(existingCache)];
         await this.redis.set(redisKey, JSON.stringify(kindergartens), 'EX', 60);
       }
       return { ok: true, kindergarten: kindergarten };
