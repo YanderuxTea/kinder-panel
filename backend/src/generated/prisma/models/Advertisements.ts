@@ -151,7 +151,7 @@ export type AdvertisementsGroupByOutputType = {
   _max: AdvertisementsMaxAggregateOutputType | null
 }
 
-type GetAdvertisementsGroupByPayload<T extends AdvertisementsGroupByArgs> = Prisma.PrismaPromise<
+export type GetAdvertisementsGroupByPayload<T extends AdvertisementsGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<AdvertisementsGroupByOutputType, T['by']> &
       {

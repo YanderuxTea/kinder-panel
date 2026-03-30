@@ -37,6 +37,7 @@ export type UserMinAggregateOutputType = {
   groupId: string | null
   recoveryCode: string | null
   recoveryCodeExpires: Date | null
+  creatorId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type UserMaxAggregateOutputType = {
   groupId: string | null
   recoveryCode: string | null
   recoveryCodeExpires: Date | null
+  creatorId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -67,6 +69,7 @@ export type UserCountAggregateOutputType = {
   groupId: number
   recoveryCode: number
   recoveryCodeExpires: number
+  creatorId: number
   _all: number
 }
 
@@ -84,6 +87,7 @@ export type UserMinAggregateInputType = {
   groupId?: true
   recoveryCode?: true
   recoveryCodeExpires?: true
+  creatorId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -99,6 +103,7 @@ export type UserMaxAggregateInputType = {
   groupId?: true
   recoveryCode?: true
   recoveryCodeExpires?: true
+  creatorId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -114,6 +119,7 @@ export type UserCountAggregateInputType = {
   groupId?: true
   recoveryCode?: true
   recoveryCodeExpires?: true
+  creatorId?: true
   _all?: true
 }
 
@@ -202,12 +208,13 @@ export type UserGroupByOutputType = {
   groupId: string | null
   recoveryCode: string | null
   recoveryCodeExpires: Date | null
+  creatorId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
 
-type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+export type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<UserGroupByOutputType, T['by']> &
       {
@@ -238,6 +245,7 @@ export type UserWhereInput = {
   groupId?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCode?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCodeExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  creatorId?: Prisma.StringNullableFilter<"User"> | string | null
   children?: Prisma.ChildrenListRelationFilter
   kindergarten?: Prisma.XOR<Prisma.KindergartenNullableScalarRelationFilter, Prisma.KindergartenWhereInput> | null
   kindergartenOwn?: Prisma.KindergartenListRelationFilter
@@ -260,6 +268,7 @@ export type UserOrderByWithRelationInput = {
   groupId?: Prisma.SortOrderInput | Prisma.SortOrder
   recoveryCode?: Prisma.SortOrderInput | Prisma.SortOrder
   recoveryCodeExpires?: Prisma.SortOrderInput | Prisma.SortOrder
+  creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   children?: Prisma.ChildrenOrderByRelationAggregateInput
   kindergarten?: Prisma.KindergartenOrderByWithRelationInput
   kindergartenOwn?: Prisma.KindergartenOrderByRelationAggregateInput
@@ -285,6 +294,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   groupId?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCode?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCodeExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  creatorId?: Prisma.StringNullableFilter<"User"> | string | null
   children?: Prisma.ChildrenListRelationFilter
   kindergarten?: Prisma.XOR<Prisma.KindergartenNullableScalarRelationFilter, Prisma.KindergartenWhereInput> | null
   kindergartenOwn?: Prisma.KindergartenListRelationFilter
@@ -307,6 +317,7 @@ export type UserOrderByWithAggregationInput = {
   groupId?: Prisma.SortOrderInput | Prisma.SortOrder
   recoveryCode?: Prisma.SortOrderInput | Prisma.SortOrder
   recoveryCodeExpires?: Prisma.SortOrderInput | Prisma.SortOrder
+  creatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -328,6 +339,7 @@ export type UserScalarWhereWithAggregatesInput = {
   groupId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   recoveryCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   recoveryCodeExpires?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  creatorId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -341,6 +353,7 @@ export type UserCreateInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
@@ -363,6 +376,7 @@ export type UserUncheckedCreateInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
@@ -381,6 +395,7 @@ export type UserUpdateInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
@@ -403,6 +418,7 @@ export type UserUncheckedUpdateInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
@@ -423,6 +439,7 @@ export type UserCreateManyInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -436,6 +453,7 @@ export type UserUpdateManyMutationInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -451,6 +469,7 @@ export type UserUncheckedUpdateManyInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -466,6 +485,7 @@ export type UserCountOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   recoveryCode?: Prisma.SortOrder
   recoveryCodeExpires?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -481,6 +501,7 @@ export type UserMaxOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   recoveryCode?: Prisma.SortOrder
   recoveryCodeExpires?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -496,6 +517,7 @@ export type UserMinOrderByAggregateInput = {
   groupId?: Prisma.SortOrder
   recoveryCode?: Prisma.SortOrder
   recoveryCodeExpires?: Prisma.SortOrder
+  creatorId?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -718,6 +740,7 @@ export type UserCreateWithoutKindergartenOwnInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   group?: Prisma.GroupCreateNestedOneWithoutUsersInput
@@ -739,6 +762,7 @@ export type UserUncheckedCreateWithoutKindergartenOwnInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
   advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutAuthorInput
@@ -761,6 +785,7 @@ export type UserCreateWithoutKindergartenInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
   group?: Prisma.GroupCreateNestedOneWithoutUsersInput
@@ -781,6 +806,7 @@ export type UserUncheckedCreateWithoutKindergartenInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
@@ -820,6 +846,7 @@ export type UserUpdateWithoutKindergartenOwnInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   group?: Prisma.GroupUpdateOneWithoutUsersNestedInput
@@ -841,6 +868,7 @@ export type UserUncheckedUpdateWithoutKindergartenOwnInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
   advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutAuthorNestedInput
@@ -879,6 +907,7 @@ export type UserScalarWhereInput = {
   groupId?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCode?: Prisma.StringNullableFilter<"User"> | string | null
   recoveryCodeExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  creatorId?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateWithoutChildrenInput = {
@@ -892,6 +921,7 @@ export type UserCreateWithoutChildrenInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
   group?: Prisma.GroupCreateNestedOneWithoutUsersInput
@@ -913,6 +943,7 @@ export type UserUncheckedCreateWithoutChildrenInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
   advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutAuthorInput
@@ -951,6 +982,7 @@ export type UserCreateWithoutGroupInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
@@ -971,6 +1003,7 @@ export type UserUncheckedCreateWithoutGroupInput = {
   kindergartenId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
@@ -1015,6 +1048,7 @@ export type UserCreateWithoutNotificationsInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
@@ -1036,6 +1070,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutAuthorInput
@@ -1069,6 +1104,7 @@ export type UserUpdateWithoutNotificationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
@@ -1090,6 +1126,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1107,6 +1144,7 @@ export type UserCreateWithoutAdvertisementsInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
@@ -1128,6 +1166,7 @@ export type UserUncheckedCreateWithoutAdvertisementsInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
@@ -1161,6 +1200,7 @@ export type UserUpdateWithoutAdvertisementsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
@@ -1182,6 +1222,7 @@ export type UserUncheckedUpdateWithoutAdvertisementsInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1199,6 +1240,7 @@ export type UserCreateWithoutDevicesInput = {
   role?: $Enums.UserRole
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenCreateNestedManyWithoutParentsInput
   kindergarten?: Prisma.KindergartenCreateNestedOneWithoutUsersInput
   kindergartenOwn?: Prisma.KindergartenCreateNestedManyWithoutOwnerInput
@@ -1220,6 +1262,7 @@ export type UserUncheckedCreateWithoutDevicesInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
   children?: Prisma.ChildrenUncheckedCreateNestedManyWithoutParentsInput
   kindergartenOwn?: Prisma.KindergartenUncheckedCreateNestedManyWithoutOwnerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutAuthorInput
@@ -1253,6 +1296,7 @@ export type UserUpdateWithoutDevicesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
@@ -1274,6 +1318,7 @@ export type UserUncheckedUpdateWithoutDevicesInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1292,6 +1337,7 @@ export type UserCreateManyKindergartenInput = {
   groupId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
 }
 
 export type UserUpdateWithoutKindergartenInput = {
@@ -1305,6 +1351,7 @@ export type UserUpdateWithoutKindergartenInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
   group?: Prisma.GroupUpdateOneWithoutUsersNestedInput
@@ -1325,6 +1372,7 @@ export type UserUncheckedUpdateWithoutKindergartenInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1344,6 +1392,7 @@ export type UserUncheckedUpdateManyWithoutKindergartenInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUpdateWithoutChildrenInput = {
@@ -1357,6 +1406,7 @@ export type UserUpdateWithoutChildrenInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
   group?: Prisma.GroupUpdateOneWithoutUsersNestedInput
@@ -1378,6 +1428,7 @@ export type UserUncheckedUpdateWithoutChildrenInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
   advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1397,6 +1448,7 @@ export type UserUncheckedUpdateManyWithoutChildrenInput = {
   groupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCreateManyGroupInput = {
@@ -1411,6 +1463,7 @@ export type UserCreateManyGroupInput = {
   kindergartenId?: string | null
   recoveryCode?: string | null
   recoveryCodeExpires?: Date | string | null
+  creatorId?: string | null
 }
 
 export type UserUpdateWithoutGroupInput = {
@@ -1424,6 +1477,7 @@ export type UserUpdateWithoutGroupInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUpdateManyWithoutParentsNestedInput
   kindergarten?: Prisma.KindergartenUpdateOneWithoutUsersNestedInput
   kindergartenOwn?: Prisma.KindergartenUpdateManyWithoutOwnerNestedInput
@@ -1444,6 +1498,7 @@ export type UserUncheckedUpdateWithoutGroupInput = {
   kindergartenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   children?: Prisma.ChildrenUncheckedUpdateManyWithoutParentsNestedInput
   kindergartenOwn?: Prisma.KindergartenUncheckedUpdateManyWithoutOwnerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutAuthorNestedInput
@@ -1463,6 +1518,7 @@ export type UserUncheckedUpdateManyWithoutGroupInput = {
   kindergartenId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recoveryCodeExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1545,6 +1601,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   groupId?: boolean
   recoveryCode?: boolean
   recoveryCodeExpires?: boolean
+  creatorId?: boolean
   children?: boolean | Prisma.User$childrenArgs<ExtArgs>
   kindergarten?: boolean | Prisma.User$kindergartenArgs<ExtArgs>
   kindergartenOwn?: boolean | Prisma.User$kindergartenOwnArgs<ExtArgs>
@@ -1568,6 +1625,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   groupId?: boolean
   recoveryCode?: boolean
   recoveryCodeExpires?: boolean
+  creatorId?: boolean
   kindergarten?: boolean | Prisma.User$kindergartenArgs<ExtArgs>
   group?: boolean | Prisma.User$groupArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1585,6 +1643,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   groupId?: boolean
   recoveryCode?: boolean
   recoveryCodeExpires?: boolean
+  creatorId?: boolean
   kindergarten?: boolean | Prisma.User$kindergartenArgs<ExtArgs>
   group?: boolean | Prisma.User$groupArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1602,9 +1661,10 @@ export type UserSelectScalar = {
   groupId?: boolean
   recoveryCode?: boolean
   recoveryCodeExpires?: boolean
+  creatorId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "login" | "fullname" | "address" | "tel" | "role" | "kindergartenId" | "groupId" | "recoveryCode" | "recoveryCodeExpires", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "login" | "fullname" | "address" | "tel" | "role" | "kindergartenId" | "groupId" | "recoveryCode" | "recoveryCodeExpires" | "creatorId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | Prisma.User$childrenArgs<ExtArgs>
   kindergarten?: boolean | Prisma.User$kindergartenArgs<ExtArgs>
@@ -1648,6 +1708,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     groupId: string | null
     recoveryCode: string | null
     recoveryCodeExpires: Date | null
+    creatorId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2090,6 +2151,7 @@ export interface UserFieldRefs {
   readonly groupId: Prisma.FieldRef<"User", 'String'>
   readonly recoveryCode: Prisma.FieldRef<"User", 'String'>
   readonly recoveryCodeExpires: Prisma.FieldRef<"User", 'DateTime'>
+  readonly creatorId: Prisma.FieldRef<"User", 'String'>
 }
     
 

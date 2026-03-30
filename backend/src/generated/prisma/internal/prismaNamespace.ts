@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.6.0
+ * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.5.0",
-  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
+  client: "7.6.0",
+  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
 /**
@@ -1129,7 +1129,8 @@ export const UserScalarFieldEnum = {
   kindergartenId: 'kindergartenId',
   groupId: 'groupId',
   recoveryCode: 'recoveryCode',
-  recoveryCodeExpires: 'recoveryCodeExpires'
+  recoveryCodeExpires: 'recoveryCodeExpires',
+  creatorId: 'creatorId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1171,7 +1172,8 @@ export const AttendanceScalarFieldEnum = {
   id: 'id',
   mark: 'mark',
   childrenId: 'childrenId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  predictMark: 'predictMark'
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
@@ -1315,6 +1317,20 @@ export type EnumStatusAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'StatusAttendance[]'
  */
 export type ListEnumStatusAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAttendance[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PredictAttendance'
+ */
+export type EnumPredictAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PredictAttendance'>
+    
+
+
+/**
+ * Reference to a field of type 'PredictAttendance[]'
+ */
+export type ListEnumPredictAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PredictAttendance[]'>
     
 
 

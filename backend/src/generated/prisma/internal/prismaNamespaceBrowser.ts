@@ -90,7 +90,8 @@ export const UserScalarFieldEnum = {
   kindergartenId: 'kindergartenId',
   groupId: 'groupId',
   recoveryCode: 'recoveryCode',
-  recoveryCodeExpires: 'recoveryCodeExpires'
+  recoveryCodeExpires: 'recoveryCodeExpires',
+  creatorId: 'creatorId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -132,7 +133,8 @@ export const AttendanceScalarFieldEnum = {
   id: 'id',
   mark: 'mark',
   childrenId: 'childrenId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  predictMark: 'predictMark'
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]

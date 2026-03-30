@@ -158,7 +158,7 @@ export type ChildrenGroupByOutputType = {
   _max: ChildrenMaxAggregateOutputType | null
 }
 
-type GetChildrenGroupByPayload<T extends ChildrenGroupByArgs> = Prisma.PrismaPromise<
+export type GetChildrenGroupByPayload<T extends ChildrenGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ChildrenGroupByOutputType, T['by']> &
       {

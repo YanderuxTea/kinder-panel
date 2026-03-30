@@ -27,3 +27,4 @@ export * from "./LogoutIcon";
 export * from "./PaletteIcon";
 export * from "./MapMarkIcon";
 export * from "./TelephoneIcon";
+export * from "./TrashIcon";

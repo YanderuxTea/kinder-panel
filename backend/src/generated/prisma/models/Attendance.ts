@@ -29,6 +29,7 @@ export type AttendanceMinAggregateOutputType = {
   mark: $Enums.StatusAttendance | null
   childrenId: string | null
   createdAt: Date | null
+  predictMark: $Enums.PredictAttendance | null
 }
 
 export type AttendanceMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type AttendanceMaxAggregateOutputType = {
   mark: $Enums.StatusAttendance | null
   childrenId: string | null
   createdAt: Date | null
+  predictMark: $Enums.PredictAttendance | null
 }
 
 export type AttendanceCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type AttendanceCountAggregateOutputType = {
   mark: number
   childrenId: number
   createdAt: number
+  predictMark: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type AttendanceMinAggregateInputType = {
   mark?: true
   childrenId?: true
   createdAt?: true
+  predictMark?: true
 }
 
 export type AttendanceMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type AttendanceMaxAggregateInputType = {
   mark?: true
   childrenId?: true
   createdAt?: true
+  predictMark?: true
 }
 
 export type AttendanceCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type AttendanceCountAggregateInputType = {
   mark?: true
   childrenId?: true
   createdAt?: true
+  predictMark?: true
   _all?: true
 }
 
@@ -146,12 +152,13 @@ export type AttendanceGroupByOutputType = {
   mark: $Enums.StatusAttendance
   childrenId: string
   createdAt: Date
+  predictMark: $Enums.PredictAttendance | null
   _count: AttendanceCountAggregateOutputType | null
   _min: AttendanceMinAggregateOutputType | null
   _max: AttendanceMaxAggregateOutputType | null
 }
 
-type GetAttendanceGroupByPayload<T extends AttendanceGroupByArgs> = Prisma.PrismaPromise<
+export type GetAttendanceGroupByPayload<T extends AttendanceGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<AttendanceGroupByOutputType, T['by']> &
       {
@@ -174,6 +181,7 @@ export type AttendanceWhereInput = {
   mark?: Prisma.EnumStatusAttendanceFilter<"Attendance"> | $Enums.StatusAttendance
   childrenId?: Prisma.StringFilter<"Attendance"> | string
   createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
+  predictMark?: Prisma.EnumPredictAttendanceNullableFilter<"Attendance"> | $Enums.PredictAttendance | null
   children?: Prisma.XOR<Prisma.ChildrenScalarRelationFilter, Prisma.ChildrenWhereInput>
 }
 
@@ -182,6 +190,7 @@ export type AttendanceOrderByWithRelationInput = {
   mark?: Prisma.SortOrder
   childrenId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  predictMark?: Prisma.SortOrderInput | Prisma.SortOrder
   children?: Prisma.ChildrenOrderByWithRelationInput
 }
 
@@ -194,6 +203,7 @@ export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
   mark?: Prisma.EnumStatusAttendanceFilter<"Attendance"> | $Enums.StatusAttendance
   childrenId?: Prisma.StringFilter<"Attendance"> | string
   createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
+  predictMark?: Prisma.EnumPredictAttendanceNullableFilter<"Attendance"> | $Enums.PredictAttendance | null
   children?: Prisma.XOR<Prisma.ChildrenScalarRelationFilter, Prisma.ChildrenWhereInput>
 }, "id" | "childrenId_createdAt">
 
@@ -202,6 +212,7 @@ export type AttendanceOrderByWithAggregationInput = {
   mark?: Prisma.SortOrder
   childrenId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  predictMark?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AttendanceCountOrderByAggregateInput
   _max?: Prisma.AttendanceMaxOrderByAggregateInput
   _min?: Prisma.AttendanceMinOrderByAggregateInput
@@ -215,12 +226,14 @@ export type AttendanceScalarWhereWithAggregatesInput = {
   mark?: Prisma.EnumStatusAttendanceWithAggregatesFilter<"Attendance"> | $Enums.StatusAttendance
   childrenId?: Prisma.StringWithAggregatesFilter<"Attendance"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Attendance"> | Date | string
+  predictMark?: Prisma.EnumPredictAttendanceNullableWithAggregatesFilter<"Attendance"> | $Enums.PredictAttendance | null
 }
 
 export type AttendanceCreateInput = {
   id?: string
   mark: $Enums.StatusAttendance
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
   children: Prisma.ChildrenCreateNestedOneWithoutAttendancesInput
 }
 
@@ -229,12 +242,14 @@ export type AttendanceUncheckedCreateInput = {
   mark: $Enums.StatusAttendance
   childrenId: string
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
 }
 
 export type AttendanceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
   children?: Prisma.ChildrenUpdateOneRequiredWithoutAttendancesNestedInput
 }
 
@@ -243,6 +258,7 @@ export type AttendanceUncheckedUpdateInput = {
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   childrenId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 export type AttendanceCreateManyInput = {
@@ -250,12 +266,14 @@ export type AttendanceCreateManyInput = {
   mark: $Enums.StatusAttendance
   childrenId: string
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
 }
 
 export type AttendanceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 export type AttendanceUncheckedUpdateManyInput = {
@@ -263,6 +281,7 @@ export type AttendanceUncheckedUpdateManyInput = {
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   childrenId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 export type AttendanceListRelationFilter = {
@@ -285,6 +304,7 @@ export type AttendanceCountOrderByAggregateInput = {
   mark?: Prisma.SortOrder
   childrenId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  predictMark?: Prisma.SortOrder
 }
 
 export type AttendanceMaxOrderByAggregateInput = {
@@ -292,6 +312,7 @@ export type AttendanceMaxOrderByAggregateInput = {
   mark?: Prisma.SortOrder
   childrenId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  predictMark?: Prisma.SortOrder
 }
 
 export type AttendanceMinOrderByAggregateInput = {
@@ -299,6 +320,7 @@ export type AttendanceMinOrderByAggregateInput = {
   mark?: Prisma.SortOrder
   childrenId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  predictMark?: Prisma.SortOrder
 }
 
 export type AttendanceCreateNestedManyWithoutChildrenInput = {
@@ -347,16 +369,22 @@ export type EnumStatusAttendanceFieldUpdateOperationsInput = {
   set?: $Enums.StatusAttendance
 }
 
+export type NullableEnumPredictAttendanceFieldUpdateOperationsInput = {
+  set?: $Enums.PredictAttendance | null
+}
+
 export type AttendanceCreateWithoutChildrenInput = {
   id?: string
   mark: $Enums.StatusAttendance
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
 }
 
 export type AttendanceUncheckedCreateWithoutChildrenInput = {
   id?: string
   mark: $Enums.StatusAttendance
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
 }
 
 export type AttendanceCreateOrConnectWithoutChildrenInput = {
@@ -393,30 +421,35 @@ export type AttendanceScalarWhereInput = {
   mark?: Prisma.EnumStatusAttendanceFilter<"Attendance"> | $Enums.StatusAttendance
   childrenId?: Prisma.StringFilter<"Attendance"> | string
   createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
+  predictMark?: Prisma.EnumPredictAttendanceNullableFilter<"Attendance"> | $Enums.PredictAttendance | null
 }
 
 export type AttendanceCreateManyChildrenInput = {
   id?: string
   mark: $Enums.StatusAttendance
   createdAt: Date | string
+  predictMark?: $Enums.PredictAttendance | null
 }
 
 export type AttendanceUpdateWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 export type AttendanceUncheckedUpdateWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 export type AttendanceUncheckedUpdateManyWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mark?: Prisma.EnumStatusAttendanceFieldUpdateOperationsInput | $Enums.StatusAttendance
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  predictMark?: Prisma.NullableEnumPredictAttendanceFieldUpdateOperationsInput | $Enums.PredictAttendance | null
 }
 
 
@@ -426,6 +459,7 @@ export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   mark?: boolean
   childrenId?: boolean
   createdAt?: boolean
+  predictMark?: boolean
   children?: boolean | Prisma.ChildrenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
@@ -434,6 +468,7 @@ export type AttendanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   mark?: boolean
   childrenId?: boolean
   createdAt?: boolean
+  predictMark?: boolean
   children?: boolean | Prisma.ChildrenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
@@ -442,6 +477,7 @@ export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   mark?: boolean
   childrenId?: boolean
   createdAt?: boolean
+  predictMark?: boolean
   children?: boolean | Prisma.ChildrenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
@@ -450,9 +486,10 @@ export type AttendanceSelectScalar = {
   mark?: boolean
   childrenId?: boolean
   createdAt?: boolean
+  predictMark?: boolean
 }
 
-export type AttendanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "mark" | "childrenId" | "createdAt", ExtArgs["result"]["attendance"]>
+export type AttendanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "mark" | "childrenId" | "createdAt" | "predictMark", ExtArgs["result"]["attendance"]>
 export type AttendanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   children?: boolean | Prisma.ChildrenDefaultArgs<ExtArgs>
 }
@@ -473,6 +510,7 @@ export type $AttendancePayload<ExtArgs extends runtime.Types.Extensions.Internal
     mark: $Enums.StatusAttendance
     childrenId: string
     createdAt: Date
+    predictMark: $Enums.PredictAttendance | null
   }, ExtArgs["result"]["attendance"]>
   composites: {}
 }
@@ -901,6 +939,7 @@ export interface AttendanceFieldRefs {
   readonly mark: Prisma.FieldRef<"Attendance", 'StatusAttendance'>
   readonly childrenId: Prisma.FieldRef<"Attendance", 'String'>
   readonly createdAt: Prisma.FieldRef<"Attendance", 'DateTime'>
+  readonly predictMark: Prisma.FieldRef<"Attendance", 'PredictAttendance'>
 }
     
 

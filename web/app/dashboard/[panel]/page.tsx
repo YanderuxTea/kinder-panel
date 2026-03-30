@@ -23,10 +23,10 @@ export default async function DashboardPage({
     main: <MainPanel fullname={fullname} role={role} />,
     settings: <SettingsPanel fullname={fullname} role={role} login={login} />,
     adminsPanel: <AdminPanel />,
-    visits: <VisitsPanel />,
+    visits: <VisitsPanel role={role} />,
     nutrition: <NutritionPanel />,
     groups: <GroupsPanel />,
-    advertisements: <AdvertisementsPanel />,
+    advertisements: <AdvertisementsPanel role={role} />,
   };
   return (
     <main className={"flex-1 p-4 pb-28.25 lg:pb-0 lg:p-10"}>

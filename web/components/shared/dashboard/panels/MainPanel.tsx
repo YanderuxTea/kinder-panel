@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import FirstBlockSA from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/FirstBlockSA";
 import FirstBLockGA from "@/components/shared/dashboard/blocksPanel/main/glAdmin/FirstBLockGA";
+import SecondBlockSA from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/SecondBlockSA";
 
 export default function MainPanel({
   fullname,
@@ -23,6 +24,12 @@ export default function MainPanel({
     staff: null,
     sad_admin: <FirstBlockSA />,
     gl_admin: <FirstBLockGA />,
+  };
+  const secondBlock: Record<RolesType, ReactNode> = {
+    user: null,
+    staff: null,
+    sad_admin: <SecondBlockSA />,
+    gl_admin: null,
   };
   return (
     <div className={"flex flex-col"}>
@@ -57,6 +64,20 @@ export default function MainPanel({
       >
         {firstBlock[role]}
       </motion.div>
+
+      {secondBlock[role] && (
+        <motion.div
+          whileInView={{ opacity: 1, y: 0 }}
+          className={
+            "mt-8 p-6 border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark rounded-3xl mb-8"
+          }
+          initial={{ opacity: 0, y: 20 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.4 }}
+        >
+          {secondBlock[role]}
+        </motion.div>
+      )}
     </div>
   );
 }

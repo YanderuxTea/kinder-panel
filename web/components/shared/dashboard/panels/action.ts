@@ -102,3 +102,31 @@ export async function searchKindergartens(query: Query) {
   } = await req.json();
   return res;
 }
+export type Nutrition = {
+  id: string;
+  dayWeek: number;
+  breakfast: string;
+  secondBreakfast: string;
+  lunch: string;
+  afternoonSnack: string;
+  breakfastTime: number;
+  secondBreakfastTime: number;
+  lunchTime: number;
+  afternoonSnackTime: number;
+};
+export async function getNutritionFunc(id: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/nutrition/get-nutrition`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: token, id: id }),
+    },
+  );
+  const res: { data: Nutrition | null } = await req.json();
+  return res;
+}

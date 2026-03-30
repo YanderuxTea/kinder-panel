@@ -20,26 +20,31 @@ enum StatusAttendance {
   sick
 }
 
+enum PredictAttendance {
+  absent
+  sick
+}
+
 model User {
-  id                  String         @id @default(uuid(7))
-  email               String         @unique
+  id                  String           @id @default(uuid(7))
+  email               String           @unique
   password            String
-  login               String         @unique
+  login               String           @unique
   fullname            String
   address             String?
   tel                 String?
-  role                UserRole       @default(sad_admin)
+  role                UserRole         @default(sad_admin)
   children            Children[]
   kindergartenId      String?
-  kindergarten        Kindergarten?  @relation("user", fields: [kindergartenId], references: [id], onDelete: Cascade)
-  kindergartenOwn     Kindergarten[] @relation("owner")
+  kindergarten        Kindergarten?    @relation("user", fields: [kindergartenId], references: [id], onDelete: Cascade)
+  kindergartenOwn     Kindergarten[]   @relation("owner")
   groupId             String?
-  group               Group?         @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  group               Group?           @relation(fields: [groupId], references: [id], onDelete: Cascade)
   recoveryCode        String?
   recoveryCodeExpires DateTime?
   notifications       Notification[]
-
-  advertisements Advertisements[]
+  creatorId           String?
+  advertisements      Advertisements[]
 
   devices Devices[]
 }
@@ -83,11 +88,12 @@ model Group {
 }
 
 model Attendance {
-  id         String           @id @default(uuid(7))
-  mark       StatusAttendance
-  childrenId String
-  children   Children         @relation(fields: [childrenId], references: [id], onDelete: Cascade)
-  createdAt  DateTime
+  id          String             @id @default(uuid(7))
+  mark        StatusAttendance
+  childrenId  String
+  children    Children           @relation(fields: [childrenId], references: [id], onDelete: Cascade)
+  createdAt   DateTime
+  predictMark PredictAttendance?
 
   @@unique([childrenId, createdAt])
 }
@@ -103,8 +109,10 @@ model Nutrition {
   secondBreakfastTime Int
   lunchTime           Int
   afternoonSnackTime  Int
-  kindergartenId      String
+  kindergartenId      String       @unique
   kindergarten        Kindergarten @relation(fields: [kindergartenId], references: [id], onDelete: Cascade)
+
+  @@index([kindergartenId])
 }
 
 model Notification {

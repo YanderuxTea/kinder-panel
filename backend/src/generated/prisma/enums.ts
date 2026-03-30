@@ -26,3 +26,11 @@ export const StatusAttendance = {
 } as const
 
 export type StatusAttendance = (typeof StatusAttendance)[keyof typeof StatusAttendance]
+
+
+export const PredictAttendance = {
+  absent: 'absent',
+  sick: 'sick'
+} as const
+
+export type PredictAttendance = (typeof PredictAttendance)[keyof typeof PredictAttendance]

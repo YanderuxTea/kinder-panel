@@ -15,7 +15,8 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.3-red?style=flat-square)](https://github.com/your-username/your-repo)
+[![Project Version](https://img.shields.io/badge/version-alpha_0.4-red?style=flat-square)](https://github.
+com/your-username/your-repo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -32,7 +33,7 @@
 - [x] Интерфейс Супер-админа
 - [x] Управление подписками
 - [ ] Создание групп
-- [ ] Создание аккаунтов воспитателей и родителей администратором садика
+- [x] Создание аккаунтов воспитателей и родителей администратором садика
 - [x] Личный кабинет для пользователей / вкладка настройки
 - [ ] Страница создания меню садика для администраторов садика
 - [ ] Возможность заранее отмечать родителям статусы (опоздает/не придет) с причиной

@@ -250,7 +250,7 @@ export type NutritionGroupByOutputType = {
   _max: NutritionMaxAggregateOutputType | null
 }
 
-type GetNutritionGroupByPayload<T extends NutritionGroupByArgs> = Prisma.PrismaPromise<
+export type GetNutritionGroupByPayload<T extends NutritionGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<NutritionGroupByOutputType, T['by']> &
       {
@@ -300,6 +300,7 @@ export type NutritionOrderByWithRelationInput = {
 
 export type NutritionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  kindergartenId?: string
   AND?: Prisma.NutritionWhereInput | Prisma.NutritionWhereInput[]
   OR?: Prisma.NutritionWhereInput[]
   NOT?: Prisma.NutritionWhereInput | Prisma.NutritionWhereInput[]
@@ -312,9 +313,8 @@ export type NutritionWhereUniqueInput = Prisma.AtLeast<{
   secondBreakfastTime?: Prisma.IntFilter<"Nutrition"> | number
   lunchTime?: Prisma.IntFilter<"Nutrition"> | number
   afternoonSnackTime?: Prisma.IntFilter<"Nutrition"> | number
-  kindergartenId?: Prisma.StringFilter<"Nutrition"> | string
   kindergarten?: Prisma.XOR<Prisma.KindergartenScalarRelationFilter, Prisma.KindergartenWhereInput>
-}, "id">
+}, "id" | "kindergartenId">
 
 export type NutritionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

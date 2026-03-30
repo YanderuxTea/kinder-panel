@@ -1,6 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { Kindergartens } from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/FirstBlockSA";
+import { Accounts } from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/action";
 
 export async function createKindergarten({
   data,
@@ -81,4 +82,70 @@ export async function changeSubscription(newDate: Date, id: string) {
   const res: { ok: boolean } = await req.json();
   console.log(res);
   return res;
+}
+export async function createAccount(
+  login: string,
+  fullname: string,
+  email: string,
+  password: string,
+  role: string,
+  kindergartenId: string,
+): Promise<{ ok: true; data: Accounts } | { ok: false; message: string }> {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  if (
+    login.trim().length === 0 ||
+    fullname.trim().length === 0 ||
+    email.trim().length === 0 ||
+    password.trim().length === 0 ||
+    kindergartenId.trim().length === 0
+  ) {
+    return { ok: false, message: "Заполните все поля" };
+  }
+  const splitFullName = fullname.trim().split(/\s+/);
+  if (splitFullName.length !== 2) {
+    return {
+      ok: false,
+      message: 'Полное имя вводить по примеру "Иван Смирнов"',
+    };
+  }
+  if (password.trim().length < 8) {
+    return { ok: false, message: "Пароль не может быть меньше 8 символов" };
+  }
+  if (login.trim().length < 5 || login.trim().length > 12) {
+    return {
+      ok: false,
+      message: "Логин не может быть меньше 5 символов и больше 12",
+    };
+  }
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/accounts/create-account`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        token: token,
+        login: login.trim(),
+        fullname: fullname.trim(),
+        email: email.trim(),
+        password: password.trim(),
+        role: role,
+        id: kindergartenId,
+      }),
+      headers: { "content-type": "application/json" },
+    },
+  );
+  return await req.json();
+}
+export async function deleteAccountFunc(id: string): Promise<{ ok: boolean }> {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/accounts/delete-account`,
+    {
+      method: "POST",
+      body: JSON.stringify({ token, id }),
+      headers: { "content-type": "application/json" },
+    },
+  );
+  return await req.json();
 }

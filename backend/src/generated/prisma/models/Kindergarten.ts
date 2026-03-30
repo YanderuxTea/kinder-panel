@@ -165,7 +165,7 @@ export type KindergartenGroupByOutputType = {
   _max: KindergartenMaxAggregateOutputType | null
 }
 
-type GetKindergartenGroupByPayload<T extends KindergartenGroupByArgs> = Prisma.PrismaPromise<
+export type GetKindergartenGroupByPayload<T extends KindergartenGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<KindergartenGroupByOutputType, T['by']> &
       {

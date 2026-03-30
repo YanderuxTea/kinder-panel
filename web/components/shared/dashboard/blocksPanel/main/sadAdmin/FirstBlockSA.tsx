@@ -35,24 +35,34 @@ export default function FirstBlockSA() {
   });
 
   return (
-    <div className={" flex flex-col"}>
+    <div className={" flex flex-col min-h-135"}>
       <div
         className={
-          "flex flex-row justify-between items-center mb-6 select-none"
+          "flex flex-row justify-between items-center mb-6 select-none gap-2"
         }
       >
-        <h2
-          className={
-            "font-semibold text-lg text-foreground-light dark:text-foreground-dark "
-          }
-        >
-          Ваши садики
-        </h2>
+        <div className="flex flex-col gap-1">
+          <h2
+            className={
+              "font-semibold text-lg text-foreground-light dark:text-foreground-dark "
+            }
+          >
+            Ваши садики
+          </h2>
+          <p
+            className={
+              "text-muted-light-foreground dark:text-muted-dark-foreground text-sm font-medium"
+            }
+          >
+            Здесь вы можете зарегистрировать свой садик
+          </p>
+        </div>
         <button
           onClick={() => setOpenModal(true)}
           className={
             "text-xs text-muted-light-foreground dark:text-muted-dark-foreground cursor-pointer transition-colors" +
-            " duration-150 ease-in-out hover:text-primary-light dark:hover:text-primary-dark border p-1.25 rounded-lg"
+            " duration-150 ease-in-out hover:text-primary-light dark:hover:text-primary-dark border p-1.25" +
+            " rounded-lg shrink-0"
           }
         >
           Добавить садик
