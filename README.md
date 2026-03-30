@@ -56,3 +56,6 @@ com/your-username/your-repo)
 
 > [!TIP]
 > **Для разработки:** Запускайте `web` и `backend` локально, чтобы работал Hot Reload, а базу и redis оставьте в Docker. Nginx в данном случае не нужен. Запустить web - `pnpm dev` запустить backend - `pnpm run start:dev`. Приложение будет доступно по стандартной ссылке для Next.js http://localhost:3000
+
+# Главная страница
+![Превью](preview.gif)
