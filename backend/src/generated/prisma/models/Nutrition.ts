@@ -28,18 +28,10 @@ export type AggregateNutrition = {
 
 export type NutritionAvgAggregateOutputType = {
   dayWeek: number | null
-  breakfastTime: number | null
-  secondBreakfastTime: number | null
-  lunchTime: number | null
-  afternoonSnackTime: number | null
 }
 
 export type NutritionSumAggregateOutputType = {
   dayWeek: number | null
-  breakfastTime: number | null
-  secondBreakfastTime: number | null
-  lunchTime: number | null
-  afternoonSnackTime: number | null
 }
 
 export type NutritionMinAggregateOutputType = {
@@ -49,10 +41,10 @@ export type NutritionMinAggregateOutputType = {
   secondBreakfast: string | null
   lunch: string | null
   afternoonSnack: string | null
-  breakfastTime: number | null
-  secondBreakfastTime: number | null
-  lunchTime: number | null
-  afternoonSnackTime: number | null
+  breakfastTime: string | null
+  secondBreakfastTime: string | null
+  lunchTime: string | null
+  afternoonSnackTime: string | null
   kindergartenId: string | null
 }
 
@@ -63,10 +55,10 @@ export type NutritionMaxAggregateOutputType = {
   secondBreakfast: string | null
   lunch: string | null
   afternoonSnack: string | null
-  breakfastTime: number | null
-  secondBreakfastTime: number | null
-  lunchTime: number | null
-  afternoonSnackTime: number | null
+  breakfastTime: string | null
+  secondBreakfastTime: string | null
+  lunchTime: string | null
+  afternoonSnackTime: string | null
   kindergartenId: string | null
 }
 
@@ -88,18 +80,10 @@ export type NutritionCountAggregateOutputType = {
 
 export type NutritionAvgAggregateInputType = {
   dayWeek?: true
-  breakfastTime?: true
-  secondBreakfastTime?: true
-  lunchTime?: true
-  afternoonSnackTime?: true
 }
 
 export type NutritionSumAggregateInputType = {
   dayWeek?: true
-  breakfastTime?: true
-  secondBreakfastTime?: true
-  lunchTime?: true
-  afternoonSnackTime?: true
 }
 
 export type NutritionMinAggregateInputType = {
@@ -238,10 +222,10 @@ export type NutritionGroupByOutputType = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
   kindergartenId: string
   _count: NutritionCountAggregateOutputType | null
   _avg: NutritionAvgAggregateOutputType | null
@@ -275,10 +259,10 @@ export type NutritionWhereInput = {
   secondBreakfast?: Prisma.StringFilter<"Nutrition"> | string
   lunch?: Prisma.StringFilter<"Nutrition"> | string
   afternoonSnack?: Prisma.StringFilter<"Nutrition"> | string
-  breakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  secondBreakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  lunchTime?: Prisma.IntFilter<"Nutrition"> | number
-  afternoonSnackTime?: Prisma.IntFilter<"Nutrition"> | number
+  breakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  secondBreakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  lunchTime?: Prisma.StringFilter<"Nutrition"> | string
+  afternoonSnackTime?: Prisma.StringFilter<"Nutrition"> | string
   kindergartenId?: Prisma.StringFilter<"Nutrition"> | string
   kindergarten?: Prisma.XOR<Prisma.KindergartenScalarRelationFilter, Prisma.KindergartenWhereInput>
 }
@@ -300,7 +284,6 @@ export type NutritionOrderByWithRelationInput = {
 
 export type NutritionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  kindergartenId?: string
   AND?: Prisma.NutritionWhereInput | Prisma.NutritionWhereInput[]
   OR?: Prisma.NutritionWhereInput[]
   NOT?: Prisma.NutritionWhereInput | Prisma.NutritionWhereInput[]
@@ -309,12 +292,13 @@ export type NutritionWhereUniqueInput = Prisma.AtLeast<{
   secondBreakfast?: Prisma.StringFilter<"Nutrition"> | string
   lunch?: Prisma.StringFilter<"Nutrition"> | string
   afternoonSnack?: Prisma.StringFilter<"Nutrition"> | string
-  breakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  secondBreakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  lunchTime?: Prisma.IntFilter<"Nutrition"> | number
-  afternoonSnackTime?: Prisma.IntFilter<"Nutrition"> | number
+  breakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  secondBreakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  lunchTime?: Prisma.StringFilter<"Nutrition"> | string
+  afternoonSnackTime?: Prisma.StringFilter<"Nutrition"> | string
+  kindergartenId?: Prisma.StringFilter<"Nutrition"> | string
   kindergarten?: Prisma.XOR<Prisma.KindergartenScalarRelationFilter, Prisma.KindergartenWhereInput>
-}, "id" | "kindergartenId">
+}, "id">
 
 export type NutritionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -345,10 +329,10 @@ export type NutritionScalarWhereWithAggregatesInput = {
   secondBreakfast?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
   lunch?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
   afternoonSnack?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
-  breakfastTime?: Prisma.IntWithAggregatesFilter<"Nutrition"> | number
-  secondBreakfastTime?: Prisma.IntWithAggregatesFilter<"Nutrition"> | number
-  lunchTime?: Prisma.IntWithAggregatesFilter<"Nutrition"> | number
-  afternoonSnackTime?: Prisma.IntWithAggregatesFilter<"Nutrition"> | number
+  breakfastTime?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
+  secondBreakfastTime?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
+  lunchTime?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
+  afternoonSnackTime?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
   kindergartenId?: Prisma.StringWithAggregatesFilter<"Nutrition"> | string
 }
 
@@ -359,10 +343,10 @@ export type NutritionCreateInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
   kindergarten: Prisma.KindergartenCreateNestedOneWithoutNutritionInput
 }
 
@@ -373,10 +357,10 @@ export type NutritionUncheckedCreateInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
   kindergartenId: string
 }
 
@@ -387,10 +371,10 @@ export type NutritionUpdateInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
   kindergarten?: Prisma.KindergartenUpdateOneRequiredWithoutNutritionNestedInput
 }
 
@@ -401,10 +385,10 @@ export type NutritionUncheckedUpdateInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
   kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -415,10 +399,10 @@ export type NutritionCreateManyInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
   kindergartenId: string
 }
 
@@ -429,10 +413,10 @@ export type NutritionUpdateManyMutationInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NutritionUncheckedUpdateManyInput = {
@@ -442,10 +426,10 @@ export type NutritionUncheckedUpdateManyInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
   kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -475,10 +459,6 @@ export type NutritionCountOrderByAggregateInput = {
 
 export type NutritionAvgOrderByAggregateInput = {
   dayWeek?: Prisma.SortOrder
-  breakfastTime?: Prisma.SortOrder
-  secondBreakfastTime?: Prisma.SortOrder
-  lunchTime?: Prisma.SortOrder
-  afternoonSnackTime?: Prisma.SortOrder
 }
 
 export type NutritionMaxOrderByAggregateInput = {
@@ -511,10 +491,6 @@ export type NutritionMinOrderByAggregateInput = {
 
 export type NutritionSumOrderByAggregateInput = {
   dayWeek?: Prisma.SortOrder
-  breakfastTime?: Prisma.SortOrder
-  secondBreakfastTime?: Prisma.SortOrder
-  lunchTime?: Prisma.SortOrder
-  afternoonSnackTime?: Prisma.SortOrder
 }
 
 export type NutritionCreateNestedManyWithoutKindergartenInput = {
@@ -574,10 +550,10 @@ export type NutritionCreateWithoutKindergartenInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
 }
 
 export type NutritionUncheckedCreateWithoutKindergartenInput = {
@@ -587,10 +563,10 @@ export type NutritionUncheckedCreateWithoutKindergartenInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
 }
 
 export type NutritionCreateOrConnectWithoutKindergartenInput = {
@@ -629,10 +605,10 @@ export type NutritionScalarWhereInput = {
   secondBreakfast?: Prisma.StringFilter<"Nutrition"> | string
   lunch?: Prisma.StringFilter<"Nutrition"> | string
   afternoonSnack?: Prisma.StringFilter<"Nutrition"> | string
-  breakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  secondBreakfastTime?: Prisma.IntFilter<"Nutrition"> | number
-  lunchTime?: Prisma.IntFilter<"Nutrition"> | number
-  afternoonSnackTime?: Prisma.IntFilter<"Nutrition"> | number
+  breakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  secondBreakfastTime?: Prisma.StringFilter<"Nutrition"> | string
+  lunchTime?: Prisma.StringFilter<"Nutrition"> | string
+  afternoonSnackTime?: Prisma.StringFilter<"Nutrition"> | string
   kindergartenId?: Prisma.StringFilter<"Nutrition"> | string
 }
 
@@ -643,10 +619,10 @@ export type NutritionCreateManyKindergartenInput = {
   secondBreakfast: string
   lunch: string
   afternoonSnack: string
-  breakfastTime: number
-  secondBreakfastTime: number
-  lunchTime: number
-  afternoonSnackTime: number
+  breakfastTime: string
+  secondBreakfastTime: string
+  lunchTime: string
+  afternoonSnackTime: string
 }
 
 export type NutritionUpdateWithoutKindergartenInput = {
@@ -656,10 +632,10 @@ export type NutritionUpdateWithoutKindergartenInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NutritionUncheckedUpdateWithoutKindergartenInput = {
@@ -669,10 +645,10 @@ export type NutritionUncheckedUpdateWithoutKindergartenInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NutritionUncheckedUpdateManyWithoutKindergartenInput = {
@@ -682,10 +658,10 @@ export type NutritionUncheckedUpdateManyWithoutKindergartenInput = {
   secondBreakfast?: Prisma.StringFieldUpdateOperationsInput | string
   lunch?: Prisma.StringFieldUpdateOperationsInput | string
   afternoonSnack?: Prisma.StringFieldUpdateOperationsInput | string
-  breakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  secondBreakfastTime?: Prisma.IntFieldUpdateOperationsInput | number
-  lunchTime?: Prisma.IntFieldUpdateOperationsInput | number
-  afternoonSnackTime?: Prisma.IntFieldUpdateOperationsInput | number
+  breakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  secondBreakfastTime?: Prisma.StringFieldUpdateOperationsInput | string
+  lunchTime?: Prisma.StringFieldUpdateOperationsInput | string
+  afternoonSnackTime?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -772,10 +748,10 @@ export type $NutritionPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     secondBreakfast: string
     lunch: string
     afternoonSnack: string
-    breakfastTime: number
-    secondBreakfastTime: number
-    lunchTime: number
-    afternoonSnackTime: number
+    breakfastTime: string
+    secondBreakfastTime: string
+    lunchTime: string
+    afternoonSnackTime: string
     kindergartenId: string
   }, ExtArgs["result"]["nutrition"]>
   composites: {}
@@ -1207,10 +1183,10 @@ export interface NutritionFieldRefs {
   readonly secondBreakfast: Prisma.FieldRef<"Nutrition", 'String'>
   readonly lunch: Prisma.FieldRef<"Nutrition", 'String'>
   readonly afternoonSnack: Prisma.FieldRef<"Nutrition", 'String'>
-  readonly breakfastTime: Prisma.FieldRef<"Nutrition", 'Int'>
-  readonly secondBreakfastTime: Prisma.FieldRef<"Nutrition", 'Int'>
-  readonly lunchTime: Prisma.FieldRef<"Nutrition", 'Int'>
-  readonly afternoonSnackTime: Prisma.FieldRef<"Nutrition", 'Int'>
+  readonly breakfastTime: Prisma.FieldRef<"Nutrition", 'String'>
+  readonly secondBreakfastTime: Prisma.FieldRef<"Nutrition", 'String'>
+  readonly lunchTime: Prisma.FieldRef<"Nutrition", 'String'>
+  readonly afternoonSnackTime: Prisma.FieldRef<"Nutrition", 'String'>
   readonly kindergartenId: Prisma.FieldRef<"Nutrition", 'String'>
 }
     

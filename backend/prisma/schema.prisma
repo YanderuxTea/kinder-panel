@@ -105,11 +105,11 @@ model Nutrition {
   secondBreakfast     String
   lunch               String
   afternoonSnack      String
-  breakfastTime       Int
-  secondBreakfastTime Int
-  lunchTime           Int
-  afternoonSnackTime  Int
-  kindergartenId      String       @unique
+  breakfastTime       String
+  secondBreakfastTime String
+  lunchTime           String
+  afternoonSnackTime  String
+  kindergartenId      String
   kindergarten        Kindergarten @relation(fields: [kindergartenId], references: [id], onDelete: Cascade)
 
   @@index([kindergartenId])

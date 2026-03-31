@@ -1,20 +1,55 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState, useTransition } from "react";
+import React, { useEffect, useRef, useState, useTransition } from "react";
 import { Kindergartens } from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/FirstBlockSA";
 import { getKindergartens } from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/action";
 import { nutritionDaysData } from "@/data/NutritionDaysData";
-import { getNutritionFunc, Nutrition } from "@/components/shared/dashboard/panels/action";
+import {
+  changeNutritionFunc,
+  getNutritionFunc,
+  Nutrition,
+} from "@/components/shared/dashboard/panels/action";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { toast } from "sonner";
 
 export default function NutritionPanel() {
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
   const [kindergartens, setKindergartens] = useState<Kindergartens[]>([]);
-  const [nutrition, setNutrition] = useState<Nutrition | null>(null);
+  const [nutrition, setNutrition] = useState<Nutrition[] | null>(null);
   const [loading, setLoading] = useTransition();
   const firstRender = useRef<boolean>(true);
   const [selectKindergartensId, setSelectKindergartensId] =
     useState<string>("");
+  const convertValueMap: Record<"mon" | "tue" | "wed" | "thu" | "fri", number> =
+    {
+      mon: 1,
+      tue: 2,
+      wed: 3,
+      thu: 4,
+      fri: 5,
+    };
+  async function handleSubmit(
+    e: React.SubmitEvent<HTMLFormElement>,
+    value: "mon" | "tue" | "wed" | "thu" | "fri",
+  ) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    const convertValue = convertValueMap[value];
+    const res = await changeNutritionFunc(
+      selectKindergartensId,
+      data as Omit<Nutrition, "id" | "dayWeek">,
+      convertValue,
+    );
+    if (res.ok) {
+      toast.success("Успешно");
+    } else {
+      toast.error("Произошла неизвестаня ошибка");
+    }
+  }
   useEffect(() => {
     setLoading(async () => {
       const res = await getKindergartens();
@@ -84,7 +119,7 @@ export default function NutritionPanel() {
                   className={
                     "p-2" +
                     " bg-card-light dark:bg-input-dark absolute inset-x-0 bottom-0 border border-border-light" +
-                    " dark:border-border-dark translate-y-full rounded-2xl flex flex-col select-none gap-2"
+                    " dark:border-border-dark translate-y-full rounded-2xl flex flex-col select-none gap-2 z-10"
                   }
                 >
                   {kindergartens.map((kindergarten) => {
@@ -119,9 +154,17 @@ export default function NutritionPanel() {
               Выберите садик
             </p>
           ) : (
-            nutritionDaysData.map((day) => {
+            nutritionDaysData.map((day, index) => {
               return (
-                <div
+                <motion.form
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    duration: 0.5,
+                    delay: 0.2 * index,
+                  }}
+                  onSubmit={(e) => handleSubmit(e, day.value)}
                   key={day.value}
                   className={
                     "w-full lg:w-[30%] border p-3 rounded-2xl border-border-light dark:border-border-dark" +
@@ -142,13 +185,68 @@ export default function NutritionPanel() {
                   >
                     {day.times.map((time) => {
                       return (
-                        <div key={time.title}>
-                          <p>{time.title}</p>
+                        <div
+                          key={time.title}
+                          className={"flex" + " flex-col gap-2"}
+                        >
+                          <div
+                            className={"flex flex-row gap-2 justify-between"}
+                          >
+                            <p>{time.title}</p>
+                            <Input
+                              maxLength={11}
+                              style={{
+                                maxWidth: 130,
+                                height: 30,
+                                textAlign: "center",
+                              }}
+                              id={`${time.title}-input`}
+                              name={`${time.value}Time`}
+                              errorPack={{ isEnableError: false }}
+                              placeholder={"00:00-00:00"}
+                              pattern={"^\\d{2}:\\d{2}-\\d{2}:\\d{2}$"}
+                              required
+                              defaultValue={
+                                nutrition?.find(
+                                  (val) =>
+                                    val.dayWeek === convertValueMap[day.value],
+                                )?.[`${time.value}Time`] || ""
+                              }
+                            />
+                          </div>
+                          <textarea
+                            required
+                            id={`${time.value}-textarea`}
+                            name={time.value}
+                            defaultValue={
+                              nutrition?.find(
+                                (val) =>
+                                  val.dayWeek === convertValueMap[day.value],
+                              )?.[`${time.value}`] || ""
+                            }
+                            className={
+                              "resize-none border border-border-light dark:border-border-dark bg-input-light/30" +
+                              " dark:bg-input-dark/30 outline-none transition-all duration-150 ease-in-out" +
+                              " focus:border-primary-light dark:focus:border-primary-dark p-2 text-sm rounded-lg" +
+                              " focus:ring-3 focus:ring-ring-light/30 dark:ring-ring-dark/30"
+                            }
+                            placeholder={`Что будет на ${time.title}`}
+                          ></textarea>
                         </div>
                       );
                     })}
                   </div>
-                </div>
+                  <Button
+                    type={"submit"}
+                    className={
+                      "bg-primary-light dark:bg-primary-dark text-primary-light-foreground" +
+                      " dark:text-primary-dark-foreground py-1.25 font-medium hover:bg-primary-light/90" +
+                      " dark:hover:bg-primary-dark/90"
+                    }
+                  >
+                    Сохранить
+                  </Button>
+                </motion.form>
               );
             })
           )}

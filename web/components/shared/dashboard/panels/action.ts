@@ -109,10 +109,10 @@ export type Nutrition = {
   secondBreakfast: string;
   lunch: string;
   afternoonSnack: string;
-  breakfastTime: number;
-  secondBreakfastTime: number;
-  lunchTime: number;
-  afternoonSnackTime: number;
+  breakfastTime: string;
+  secondBreakfastTime: string;
+  lunchTime: string;
+  afternoonSnackTime: string;
 };
 export async function getNutritionFunc(id: string) {
   const cookieStorage = await cookies();
@@ -127,6 +127,46 @@ export async function getNutritionFunc(id: string) {
       body: JSON.stringify({ token: token, id: id }),
     },
   );
-  const res: { data: Nutrition | null } = await req.json();
+  const res: { data: Nutrition[] | null } = await req.json();
+  return res;
+}
+export async function changeNutritionFunc(
+  id: string,
+  data: Omit<Nutrition, "id" | "dayWeek">,
+  dayWeek: number,
+) {
+  const checkArr = [
+    data.afternoonSnackTime,
+    data.breakfastTime,
+    data.secondBreakfastTime,
+    data.lunchTime,
+  ];
+  const regex = new RegExp(`^\\d{2}:\\d{2}-\\d{2}:\\d{2}$`);
+  for (const value of checkArr) {
+    if (!regex.test(value)) {
+      return { ok: false };
+    }
+  }
+  if (dayWeek < 1 || dayWeek > 5) {
+    return { ok: false };
+  }
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/nutrition/change-nutrition`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: token,
+        id: id,
+        dayWeek: dayWeek,
+        data: data,
+      }),
+    },
+  );
+  const res: { ok: boolean } = await req.json();
   return res;
 }

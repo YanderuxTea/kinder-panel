@@ -1,12 +1,12 @@
-type NutritionDaysData = {
+type NutritionDaysDataType = {
   title: string;
-  value: string;
+  value: "mon" | "tue" | "wed" | "thu" | "fri";
   times: {
     title: string;
-    value: string;
+    value: "breakfast" | "secondBreakfast" | "lunch" | "afternoonSnack";
   }[];
 };
-export const nutritionDaysData: NutritionDaysData[] = [
+export const nutritionDaysData: NutritionDaysDataType[] = [
   {
     title: "Понедельник",
     value: "mon",

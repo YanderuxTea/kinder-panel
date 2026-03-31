@@ -3,6 +3,7 @@ import { NutritionService } from './nutrition.service.js';
 import { AuthGuard } from '../auth/auth.guard.js';
 import { Roles } from '../auth/role-decorator.dto.js';
 import { GetNutrition } from './dto/get-nutrition.dto.js';
+import { ChangeNutrition } from './dto/change-nutrition.dto.js';
 
 @Controller('nutrition')
 export class NutritionController {
@@ -12,5 +13,11 @@ export class NutritionController {
   @Post('get-nutrition')
   getNutrition(@Body() dto: GetNutrition) {
     return this.nutritionService.getNutrition(dto);
+  }
+  @UseGuards(AuthGuard)
+  @Roles('sad_admin')
+  @Post('change-nutrition')
+  changeNutrition(@Body() dto: ChangeNutrition) {
+    return this.nutritionService.changeNutrition(dto);
   }
 }
