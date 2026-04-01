@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/register-user.dto.js';
 import { PrismaService } from '../prisma.service.js';
 import bcrypt from 'bcrypt';
@@ -11,6 +11,8 @@ import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
 import { VerifyToken } from './dto/verify-token.dto.js';
 import { JwtPayload } from 'src/jwt-payload-interface.js';
+import { CheckSub } from './dto/check-sub.dto.js';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -233,5 +235,27 @@ export class AuthService {
     } else {
       return { ok: false, status: 500 };
     }
+  }
+  async checkSub(dto: CheckSub) {
+    const decodeToken: JwtPayload = this.jwtService.decode(dto.token);
+    const redisKey = `check-sub-${decodeToken.id}`;
+    const cache = await this.redis.get(redisKey);
+    if (cache) {
+      return { data: cache };
+    }
+    const check = await this.prisma.user.findUnique({
+      where: { id: decodeToken.id },
+      select: { kindergarten: { select: { endSubscription: true } } },
+    });
+    if (check && check.kindergarten && check.kindergarten.endSubscription) {
+      await this.redis.set(
+        redisKey,
+        check.kindergarten.endSubscription.toString(),
+        'EX',
+        360,
+      );
+      return { data: check.kindergarten.endSubscription };
+    }
+    return { data: null };
   }
 }

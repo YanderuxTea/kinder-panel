@@ -69,6 +69,22 @@ export async function proxy(request: NextRequest) {
         encodeURIComponent(res.data.fullName),
       );
       response.headers.set("x-user-login", encodeURI(res.data.login));
+      const resCheckSub = await fetch(
+        `${process.env.BACKEND_URL}/auth/check-sub`,
+        {
+          method: "POST",
+          body: JSON.stringify({ token: token.value }),
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      const reqCheckSub: { data: string } = await resCheckSub.json();
+      const endSubscription = new Date(reqCheckSub.data);
+      const isEndSub = new Date() > endSubscription;
+      if (isEndSub && (res.data.role === "user" || res.data.role === "staff")) {
+        return NextResponse.redirect(new URL("/wait", request.url));
+      } else if (!isEndSub && pathname.startsWith("/wait")) {
+        return NextResponse.redirect(new URL("/dashboard/main", request.url));
+      }
       if (res.ok) {
         if (pathname === "/dashboard") {
           return NextResponse.redirect(new URL("/dashboard/main", request.url));
@@ -92,8 +108,11 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   } else {
-    if (token) {
+    if (token && !pathname.startsWith("/wait")) {
       return NextResponse.redirect(new URL("/dashboard/main", request.url));
+    }
+    if (!token && pathname.startsWith("/wait")) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
   }
   return response;

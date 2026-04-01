@@ -170,3 +170,88 @@ export async function changeNutritionFunc(
   const res: { ok: boolean } = await req.json();
   return res;
 }
+export type Groups = {
+  id: string;
+  name: string;
+  _count: {
+    childrens: number;
+  };
+  childrens: {
+    id: string;
+    name: string;
+    group: {
+      name: string;
+    };
+    surname: string;
+    dateOfBirth: Date;
+    parents: {
+      fullname: string;
+    }[];
+  }[];
+};
+export async function getGroups(id: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(`${process.env.BACKEND_URL}/groups/get-groups`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token: token, id: id }),
+  });
+  const res: { groups: Groups[] } = await req.json();
+  return res;
+}
+export async function createGroup(idKindergarten: string, nameGroup: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  if (nameGroup.trim().length === 0) {
+    return { ok: false, message: "Введите название группы" };
+  }
+  const req = await fetch(`${process.env.BACKEND_URL}/groups/create-group`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      token,
+      kindergartenId: idKindergarten,
+      name: nameGroup.trim(),
+    }),
+  });
+  const res: { ok: true; group: Groups } | { ok: false; message: string } =
+    await req.json();
+  return res;
+}
+export async function createChild(data: {
+  name: string;
+  surname: string;
+  birthdate: Date;
+  loginsParents: string[];
+  idSelectGroup: string;
+}) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(`${process.env.BACKEND_URL}/groups/create-child`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token: token, ...data }),
+  });
+  const res:
+    | { ok: false; message: string }
+    | {
+        ok: true;
+        data: {
+          id: string;
+          name: string;
+          group: {
+            name: string;
+          };
+          surname: string;
+          dateOfBirth: Date;
+          parents: {
+            fullname: string;
+          }[];
+        };
+      } = await req.json();
+  console.log(res);
+  return res;
+}

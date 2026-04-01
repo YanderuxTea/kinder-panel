@@ -103,7 +103,7 @@ export default function NutritionPanel() {
           <div
             onClick={() => setOpenDropdown((prevState) => !prevState)}
             className={
-              "h-12 bg-input-light/30 dark:bg-input-dark/30 border border-border-light dark:border-border-dark" +
+              "h-10 bg-input-light/30 dark:bg-input-dark/30 border border-border-light dark:border-border-dark" +
               " w-full rounded-3xl relative select-none p-3 flex items-center"
             }
           >

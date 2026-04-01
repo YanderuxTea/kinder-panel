@@ -37,6 +37,14 @@ export class NutritionService {
       lunch,
       afternoonSnack,
     } = data;
+    const now = new Date(Date.now());
+    const isExpired = await this.prisma.kindergarten.findUnique({
+      where: { id: id },
+      select: { endSubscription: true },
+    });
+    if (isExpired && now > isExpired.endSubscription) {
+      return { ok: false };
+    }
     try {
       const check = await this.prisma.nutrition.findMany({
         where: { kindergartenId: id, dayWeek: dayWeek },

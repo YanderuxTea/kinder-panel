@@ -11,6 +11,7 @@ import { SettingsModule } from './settings/settings.module.js';
 import { AdminPanelModule } from './admin-panel/admin-panel.module.js';
 import { AccountsModule } from './accounts/accounts.module.js';
 import { NutritionModule } from './nutrition/nutrition.module.js';
+import { GroupsModule } from './groups/groups.module.js';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { NutritionModule } from './nutrition/nutrition.module.js';
     AdminPanelModule,
     AccountsModule,
     NutritionModule,
+    GroupsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -129,13 +129,6 @@ export default function SecondBlockSA() {
                     >
                       <UserRoleConverter roleConst={value.role} />
                     </div>
-                    <div
-                      className={
-                        " flex-col gap-1 font-medium text-sm hidden lg:flex"
-                      }
-                    >
-                      Группа: {value.group?.name || "Нет"}
-                    </div>
                     <button
                       onClick={() => deleteAccount(value.id)}
                       className={

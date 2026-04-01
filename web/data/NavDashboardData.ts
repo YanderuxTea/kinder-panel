@@ -6,7 +6,7 @@ import {
   HomeIcon,
   NutritionIcon,
   SettingsIcon,
-  UsersIcon,
+  UsersIcon
 } from "@/components/icons";
 
 type NavDashboardData = {
@@ -28,7 +28,7 @@ export function NavDashboardData({
     { title: "Главная", icon: HomeIcon(), url: "main" },
     { title: "Посещения", icon: CalenderMarkIcon(), url: "visits" },
     { title: "Объявления", icon: AdvertisementsIcon(), url: "advertisements" },
-    { title: "Группы", icon: UsersIcon(), url: "groups" },
+    { title: "Группы", icon: UsersIcon({ size: "md" }), url: "groups" },
     { title: "Питание", icon: NutritionIcon({ size: "md" }), url: "nutrition" },
     { title: "Настройки", icon: SettingsIcon({ size: "md" }), url: "settings" },
   ];

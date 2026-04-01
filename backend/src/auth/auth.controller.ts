@@ -6,6 +6,7 @@ import { SecondStepDto } from './dto/second-step-reset.dto.js';
 import { ThirdStepDto } from './dto/third-step-reset.dto.js';
 import { AuthenticateUser } from './dto/authenticate-user.dto.js';
 import { VerifyToken } from './dto/verify-token.dto.js';
+import { CheckSub } from './dto/check-sub.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -37,5 +38,9 @@ export class AuthController {
   @Post('logout')
   logoutUser(@Body() dto: VerifyToken) {
     return this.authService.logoutUser(dto);
+  }
+  @Post('check-sub')
+  checkSub(@Body() dto: CheckSub) {
+    return this.authService.checkSub(dto);
   }
 }
