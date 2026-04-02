@@ -80,7 +80,6 @@ export async function changeSubscription(newDate: Date, id: string) {
     },
   );
   const res: { ok: boolean } = await req.json();
-  console.log(res);
   return res;
 }
 export async function createAccount(
@@ -90,6 +89,7 @@ export async function createAccount(
   password: string,
   role: string,
   kindergartenId: string,
+  selectGroupId: string,
 ): Promise<{ ok: true; data: Accounts } | { ok: false; message: string }> {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token-kinder-panel")?.value;
@@ -130,6 +130,7 @@ export async function createAccount(
         password: password.trim(),
         role: role,
         id: kindergartenId,
+        groupId: selectGroupId,
       }),
       headers: { "content-type": "application/json" },
     },
@@ -148,4 +149,34 @@ export async function deleteAccountFunc(id: string): Promise<{ ok: boolean }> {
     },
   );
   return await req.json();
+}
+export type Advertisement = {
+  id: string;
+  createdAt: Date;
+  text: string;
+  author: {
+    fullname: string;
+    group: {
+      name: string;
+    } | null;
+  };
+};
+export async function createAdvertisements(text: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  if (text.length === 0) {
+    return { ok: false, message: "Напишите объявление" };
+  }
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/advertisements/create-advertisement`,
+    {
+      method: "POST",
+      body: JSON.stringify({ token: token, text: text }),
+      headers: { "content-type": "application/json" },
+    },
+  );
+  const res:
+    | { ok: true; data: Advertisement }
+    | { ok: false; message: string } = await req.json();
+  return res;
 }

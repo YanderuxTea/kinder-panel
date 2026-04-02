@@ -28,6 +28,8 @@ export type AdvertisementsMinAggregateOutputType = {
   id: string | null
   authorId: string | null
   toGroupId: string | null
+  kindergartenId: string | null
+  createdAt: Date | null
   text: string | null
 }
 
@@ -35,6 +37,8 @@ export type AdvertisementsMaxAggregateOutputType = {
   id: string | null
   authorId: string | null
   toGroupId: string | null
+  kindergartenId: string | null
+  createdAt: Date | null
   text: string | null
 }
 
@@ -42,6 +46,8 @@ export type AdvertisementsCountAggregateOutputType = {
   id: number
   authorId: number
   toGroupId: number
+  kindergartenId: number
+  createdAt: number
   text: number
   _all: number
 }
@@ -51,6 +57,8 @@ export type AdvertisementsMinAggregateInputType = {
   id?: true
   authorId?: true
   toGroupId?: true
+  kindergartenId?: true
+  createdAt?: true
   text?: true
 }
 
@@ -58,6 +66,8 @@ export type AdvertisementsMaxAggregateInputType = {
   id?: true
   authorId?: true
   toGroupId?: true
+  kindergartenId?: true
+  createdAt?: true
   text?: true
 }
 
@@ -65,6 +75,8 @@ export type AdvertisementsCountAggregateInputType = {
   id?: true
   authorId?: true
   toGroupId?: true
+  kindergartenId?: true
+  createdAt?: true
   text?: true
   _all?: true
 }
@@ -145,6 +157,8 @@ export type AdvertisementsGroupByOutputType = {
   id: string
   authorId: string
   toGroupId: string
+  kindergartenId: string
+  createdAt: Date
   text: string
   _count: AdvertisementsCountAggregateOutputType | null
   _min: AdvertisementsMinAggregateOutputType | null
@@ -173,18 +187,24 @@ export type AdvertisementsWhereInput = {
   id?: Prisma.StringFilter<"Advertisements"> | string
   authorId?: Prisma.StringFilter<"Advertisements"> | string
   toGroupId?: Prisma.StringFilter<"Advertisements"> | string
+  kindergartenId?: Prisma.StringFilter<"Advertisements"> | string
+  createdAt?: Prisma.DateTimeFilter<"Advertisements"> | Date | string
   text?: Prisma.StringFilter<"Advertisements"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   toGroup?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
+  kindergarten?: Prisma.XOR<Prisma.KindergartenScalarRelationFilter, Prisma.KindergartenWhereInput>
 }
 
 export type AdvertisementsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   toGroupId?: Prisma.SortOrder
+  kindergartenId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   text?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   toGroup?: Prisma.GroupOrderByWithRelationInput
+  kindergarten?: Prisma.KindergartenOrderByWithRelationInput
 }
 
 export type AdvertisementsWhereUniqueInput = Prisma.AtLeast<{
@@ -194,15 +214,20 @@ export type AdvertisementsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AdvertisementsWhereInput | Prisma.AdvertisementsWhereInput[]
   authorId?: Prisma.StringFilter<"Advertisements"> | string
   toGroupId?: Prisma.StringFilter<"Advertisements"> | string
+  kindergartenId?: Prisma.StringFilter<"Advertisements"> | string
+  createdAt?: Prisma.DateTimeFilter<"Advertisements"> | Date | string
   text?: Prisma.StringFilter<"Advertisements"> | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   toGroup?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
+  kindergarten?: Prisma.XOR<Prisma.KindergartenScalarRelationFilter, Prisma.KindergartenWhereInput>
 }, "id">
 
 export type AdvertisementsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   toGroupId?: Prisma.SortOrder
+  kindergartenId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   text?: Prisma.SortOrder
   _count?: Prisma.AdvertisementsCountOrderByAggregateInput
   _max?: Prisma.AdvertisementsMaxOrderByAggregateInput
@@ -216,34 +241,44 @@ export type AdvertisementsScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Advertisements"> | string
   authorId?: Prisma.StringWithAggregatesFilter<"Advertisements"> | string
   toGroupId?: Prisma.StringWithAggregatesFilter<"Advertisements"> | string
+  kindergartenId?: Prisma.StringWithAggregatesFilter<"Advertisements"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Advertisements"> | Date | string
   text?: Prisma.StringWithAggregatesFilter<"Advertisements"> | string
 }
 
 export type AdvertisementsCreateInput = {
   id?: string
+  createdAt?: Date | string
   text: string
   author: Prisma.UserCreateNestedOneWithoutAdvertisementsInput
   toGroup: Prisma.GroupCreateNestedOneWithoutAdvertisementsInput
+  kindergarten: Prisma.KindergartenCreateNestedOneWithoutAdvertisementsInput
 }
 
 export type AdvertisementsUncheckedCreateInput = {
   id?: string
   authorId: string
   toGroupId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
 export type AdvertisementsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   author?: Prisma.UserUpdateOneRequiredWithoutAdvertisementsNestedInput
   toGroup?: Prisma.GroupUpdateOneRequiredWithoutAdvertisementsNestedInput
+  kindergarten?: Prisma.KindergartenUpdateOneRequiredWithoutAdvertisementsNestedInput
 }
 
 export type AdvertisementsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -251,11 +286,14 @@ export type AdvertisementsCreateManyInput = {
   id?: string
   authorId: string
   toGroupId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
 export type AdvertisementsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -263,6 +301,8 @@ export type AdvertisementsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -280,6 +320,8 @@ export type AdvertisementsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   toGroupId?: Prisma.SortOrder
+  kindergartenId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   text?: Prisma.SortOrder
 }
 
@@ -287,6 +329,8 @@ export type AdvertisementsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   toGroupId?: Prisma.SortOrder
+  kindergartenId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   text?: Prisma.SortOrder
 }
 
@@ -294,6 +338,8 @@ export type AdvertisementsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   toGroupId?: Prisma.SortOrder
+  kindergartenId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   text?: Prisma.SortOrder
 }
 
@@ -336,6 +382,48 @@ export type AdvertisementsUncheckedUpdateManyWithoutAuthorNestedInput = {
   connect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
   update?: Prisma.AdvertisementsUpdateWithWhereUniqueWithoutAuthorInput | Prisma.AdvertisementsUpdateWithWhereUniqueWithoutAuthorInput[]
   updateMany?: Prisma.AdvertisementsUpdateManyWithWhereWithoutAuthorInput | Prisma.AdvertisementsUpdateManyWithWhereWithoutAuthorInput[]
+  deleteMany?: Prisma.AdvertisementsScalarWhereInput | Prisma.AdvertisementsScalarWhereInput[]
+}
+
+export type AdvertisementsCreateNestedManyWithoutKindergartenInput = {
+  create?: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput> | Prisma.AdvertisementsCreateWithoutKindergartenInput[] | Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput[]
+  connectOrCreate?: Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput | Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput[]
+  createMany?: Prisma.AdvertisementsCreateManyKindergartenInputEnvelope
+  connect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+}
+
+export type AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput = {
+  create?: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput> | Prisma.AdvertisementsCreateWithoutKindergartenInput[] | Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput[]
+  connectOrCreate?: Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput | Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput[]
+  createMany?: Prisma.AdvertisementsCreateManyKindergartenInputEnvelope
+  connect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+}
+
+export type AdvertisementsUpdateManyWithoutKindergartenNestedInput = {
+  create?: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput> | Prisma.AdvertisementsCreateWithoutKindergartenInput[] | Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput[]
+  connectOrCreate?: Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput | Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput[]
+  upsert?: Prisma.AdvertisementsUpsertWithWhereUniqueWithoutKindergartenInput | Prisma.AdvertisementsUpsertWithWhereUniqueWithoutKindergartenInput[]
+  createMany?: Prisma.AdvertisementsCreateManyKindergartenInputEnvelope
+  set?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  disconnect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  delete?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  connect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  update?: Prisma.AdvertisementsUpdateWithWhereUniqueWithoutKindergartenInput | Prisma.AdvertisementsUpdateWithWhereUniqueWithoutKindergartenInput[]
+  updateMany?: Prisma.AdvertisementsUpdateManyWithWhereWithoutKindergartenInput | Prisma.AdvertisementsUpdateManyWithWhereWithoutKindergartenInput[]
+  deleteMany?: Prisma.AdvertisementsScalarWhereInput | Prisma.AdvertisementsScalarWhereInput[]
+}
+
+export type AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput = {
+  create?: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput> | Prisma.AdvertisementsCreateWithoutKindergartenInput[] | Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput[]
+  connectOrCreate?: Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput | Prisma.AdvertisementsCreateOrConnectWithoutKindergartenInput[]
+  upsert?: Prisma.AdvertisementsUpsertWithWhereUniqueWithoutKindergartenInput | Prisma.AdvertisementsUpsertWithWhereUniqueWithoutKindergartenInput[]
+  createMany?: Prisma.AdvertisementsCreateManyKindergartenInputEnvelope
+  set?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  disconnect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  delete?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  connect?: Prisma.AdvertisementsWhereUniqueInput | Prisma.AdvertisementsWhereUniqueInput[]
+  update?: Prisma.AdvertisementsUpdateWithWhereUniqueWithoutKindergartenInput | Prisma.AdvertisementsUpdateWithWhereUniqueWithoutKindergartenInput[]
+  updateMany?: Prisma.AdvertisementsUpdateManyWithWhereWithoutKindergartenInput | Prisma.AdvertisementsUpdateManyWithWhereWithoutKindergartenInput[]
   deleteMany?: Prisma.AdvertisementsScalarWhereInput | Prisma.AdvertisementsScalarWhereInput[]
 }
 
@@ -383,13 +471,17 @@ export type AdvertisementsUncheckedUpdateManyWithoutToGroupNestedInput = {
 
 export type AdvertisementsCreateWithoutAuthorInput = {
   id?: string
+  createdAt?: Date | string
   text: string
   toGroup: Prisma.GroupCreateNestedOneWithoutAdvertisementsInput
+  kindergarten: Prisma.KindergartenCreateNestedOneWithoutAdvertisementsInput
 }
 
 export type AdvertisementsUncheckedCreateWithoutAuthorInput = {
   id?: string
   toGroupId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
@@ -426,18 +518,66 @@ export type AdvertisementsScalarWhereInput = {
   id?: Prisma.StringFilter<"Advertisements"> | string
   authorId?: Prisma.StringFilter<"Advertisements"> | string
   toGroupId?: Prisma.StringFilter<"Advertisements"> | string
+  kindergartenId?: Prisma.StringFilter<"Advertisements"> | string
+  createdAt?: Prisma.DateTimeFilter<"Advertisements"> | Date | string
   text?: Prisma.StringFilter<"Advertisements"> | string
+}
+
+export type AdvertisementsCreateWithoutKindergartenInput = {
+  id?: string
+  createdAt?: Date | string
+  text: string
+  author: Prisma.UserCreateNestedOneWithoutAdvertisementsInput
+  toGroup: Prisma.GroupCreateNestedOneWithoutAdvertisementsInput
+}
+
+export type AdvertisementsUncheckedCreateWithoutKindergartenInput = {
+  id?: string
+  authorId: string
+  toGroupId: string
+  createdAt?: Date | string
+  text: string
+}
+
+export type AdvertisementsCreateOrConnectWithoutKindergartenInput = {
+  where: Prisma.AdvertisementsWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput>
+}
+
+export type AdvertisementsCreateManyKindergartenInputEnvelope = {
+  data: Prisma.AdvertisementsCreateManyKindergartenInput | Prisma.AdvertisementsCreateManyKindergartenInput[]
+  skipDuplicates?: boolean
+}
+
+export type AdvertisementsUpsertWithWhereUniqueWithoutKindergartenInput = {
+  where: Prisma.AdvertisementsWhereUniqueInput
+  update: Prisma.XOR<Prisma.AdvertisementsUpdateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedUpdateWithoutKindergartenInput>
+  create: Prisma.XOR<Prisma.AdvertisementsCreateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedCreateWithoutKindergartenInput>
+}
+
+export type AdvertisementsUpdateWithWhereUniqueWithoutKindergartenInput = {
+  where: Prisma.AdvertisementsWhereUniqueInput
+  data: Prisma.XOR<Prisma.AdvertisementsUpdateWithoutKindergartenInput, Prisma.AdvertisementsUncheckedUpdateWithoutKindergartenInput>
+}
+
+export type AdvertisementsUpdateManyWithWhereWithoutKindergartenInput = {
+  where: Prisma.AdvertisementsScalarWhereInput
+  data: Prisma.XOR<Prisma.AdvertisementsUpdateManyMutationInput, Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenInput>
 }
 
 export type AdvertisementsCreateWithoutToGroupInput = {
   id?: string
+  createdAt?: Date | string
   text: string
   author: Prisma.UserCreateNestedOneWithoutAdvertisementsInput
+  kindergarten: Prisma.KindergartenCreateNestedOneWithoutAdvertisementsInput
 }
 
 export type AdvertisementsUncheckedCreateWithoutToGroupInput = {
   id?: string
   authorId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
@@ -470,48 +610,96 @@ export type AdvertisementsUpdateManyWithWhereWithoutToGroupInput = {
 export type AdvertisementsCreateManyAuthorInput = {
   id?: string
   toGroupId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
 export type AdvertisementsUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   toGroup?: Prisma.GroupUpdateOneRequiredWithoutAdvertisementsNestedInput
+  kindergarten?: Prisma.KindergartenUpdateOneRequiredWithoutAdvertisementsNestedInput
 }
 
 export type AdvertisementsUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AdvertisementsUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  text?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type AdvertisementsCreateManyKindergartenInput = {
+  id?: string
+  authorId: string
+  toGroupId: string
+  createdAt?: Date | string
+  text: string
+}
+
+export type AdvertisementsUpdateWithoutKindergartenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  text?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.UserUpdateOneRequiredWithoutAdvertisementsNestedInput
+  toGroup?: Prisma.GroupUpdateOneRequiredWithoutAdvertisementsNestedInput
+}
+
+export type AdvertisementsUncheckedUpdateWithoutKindergartenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  text?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type AdvertisementsUncheckedUpdateManyWithoutKindergartenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  toGroupId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AdvertisementsCreateManyToGroupInput = {
   id?: string
   authorId: string
+  kindergartenId: string
+  createdAt?: Date | string
   text: string
 }
 
 export type AdvertisementsUpdateWithoutToGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   author?: Prisma.UserUpdateOneRequiredWithoutAdvertisementsNestedInput
+  kindergarten?: Prisma.KindergartenUpdateOneRequiredWithoutAdvertisementsNestedInput
 }
 
 export type AdvertisementsUncheckedUpdateWithoutToGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AdvertisementsUncheckedUpdateManyWithoutToGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
+  kindergartenId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -521,48 +709,62 @@ export type AdvertisementsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   authorId?: boolean
   toGroupId?: boolean
+  kindergartenId?: boolean
+  createdAt?: boolean
   text?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["advertisements"]>
 
 export type AdvertisementsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   authorId?: boolean
   toGroupId?: boolean
+  kindergartenId?: boolean
+  createdAt?: boolean
   text?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["advertisements"]>
 
 export type AdvertisementsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   authorId?: boolean
   toGroupId?: boolean
+  kindergartenId?: boolean
+  createdAt?: boolean
   text?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["advertisements"]>
 
 export type AdvertisementsSelectScalar = {
   id?: boolean
   authorId?: boolean
   toGroupId?: boolean
+  kindergartenId?: boolean
+  createdAt?: boolean
   text?: boolean
 }
 
-export type AdvertisementsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "toGroupId" | "text", ExtArgs["result"]["advertisements"]>
+export type AdvertisementsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authorId" | "toGroupId" | "kindergartenId" | "createdAt" | "text", ExtArgs["result"]["advertisements"]>
 export type AdvertisementsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }
 export type AdvertisementsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }
 export type AdvertisementsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   toGroup?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  kindergarten?: boolean | Prisma.KindergartenDefaultArgs<ExtArgs>
 }
 
 export type $AdvertisementsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -570,11 +772,14 @@ export type $AdvertisementsPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
     toGroup: Prisma.$GroupPayload<ExtArgs>
+    kindergarten: Prisma.$KindergartenPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     authorId: string
     toGroupId: string
+    kindergartenId: string
+    createdAt: Date
     text: string
   }, ExtArgs["result"]["advertisements"]>
   composites: {}
@@ -972,6 +1177,7 @@ export interface Prisma__AdvertisementsClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   toGroup<T extends Prisma.GroupDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GroupDefaultArgs<ExtArgs>>): Prisma.Prisma__GroupClient<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  kindergarten<T extends Prisma.KindergartenDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KindergartenDefaultArgs<ExtArgs>>): Prisma.Prisma__KindergartenClient<runtime.Types.Result.GetResult<Prisma.$KindergartenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1004,6 +1210,8 @@ export interface AdvertisementsFieldRefs {
   readonly id: Prisma.FieldRef<"Advertisements", 'String'>
   readonly authorId: Prisma.FieldRef<"Advertisements", 'String'>
   readonly toGroupId: Prisma.FieldRef<"Advertisements", 'String'>
+  readonly kindergartenId: Prisma.FieldRef<"Advertisements", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Advertisements", 'DateTime'>
   readonly text: Prisma.FieldRef<"Advertisements", 'String'>
 }
     

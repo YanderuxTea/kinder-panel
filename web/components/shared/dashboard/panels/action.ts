@@ -1,6 +1,7 @@
 "use server";
-import { cookies } from "next/headers";
-import { Query } from "@/components/shared/dashboard/panels/AdminPanel";
+import {cookies} from "next/headers";
+import {Query} from "@/components/shared/dashboard/panels/AdminPanel";
+import {Advertisement} from "@/components/forms/panels/action";
 
 export async function getDataForSettings() {
   const cookieStorage = await cookies();
@@ -252,6 +253,55 @@ export async function createChild(data: {
           }[];
         };
       } = await req.json();
-  console.log(res);
+  return res;
+}
+export async function getAdvertisements() {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/advertisements/get-advertisements`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    },
+  );
+  const res:
+    | { ok: false }
+    | {
+        data: { data: Advertisement[]; hasMore: boolean; cursor: string };
+      } = await req.json();
+  return res;
+}
+export async function fetchMoreAdvertisements(cursor: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/advertisements/fetch-more-advertisements`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: token, cursor: cursor }),
+    },
+  );
+  const res:
+    | { ok: false }
+    | {
+        data: { data: Advertisement[]; hasMore: boolean; cursor: string };
+      } = await req.json();
+  return res;
+}
+export async function deleteAdvertisement(id: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/advertisements/delete-advertisement`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: token, id: id }),
+    },
+  );
+  const res: { ok: boolean } = await req.json();
   return res;
 }

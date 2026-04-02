@@ -12,6 +12,8 @@ import { AdminPanelModule } from './admin-panel/admin-panel.module.js';
 import { AccountsModule } from './accounts/accounts.module.js';
 import { NutritionModule } from './nutrition/nutrition.module.js';
 import { GroupsModule } from './groups/groups.module.js';
+import { AdvertisementsModule } from './advertisements/advertisements.module.js';
+import { NotificationsModule } from './notifications/notifications.module.js';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { GroupsModule } from './groups/groups.module.js';
     AccountsModule,
     NutritionModule,
     GroupsModule,
+    AdvertisementsModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

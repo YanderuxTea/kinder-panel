@@ -19,4 +19,6 @@ export class CreateAccount {
   role: string;
   @IsString()
   id: string;
+  @IsString()
+  groupId: string;
 }

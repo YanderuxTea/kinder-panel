@@ -11,15 +11,15 @@ export default async function DashboardLayout({
   children: ReactNode;
 }) {
   const headerList = await headers();
-  const role = headerList.get("x-user-role");
+  const role = headerList.get("x-user-role") as RolesType;
   const fullname = decodeURIComponent(headerList.get("x-user-fullname") || "");
   return (
     <div>
-      <SidebarDashboard fullname={fullname || ""} role={role as RolesType} />
+      <SidebarDashboard fullname={fullname || ""} role={role} />
       <div className={"flex flex-col lg:ml-64"}>
-        <HeaderDashboard fullname={fullname || ""} />
+        <HeaderDashboard fullname={fullname || ""} role={role} />
         {children}
-        <NavMobileDashboard role={role as RolesType} />
+        <NavMobileDashboard role={role} />
       </div>
     </div>
   );

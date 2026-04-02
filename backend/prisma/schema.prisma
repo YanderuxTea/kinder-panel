@@ -60,7 +60,8 @@ model Kindergarten {
   users           User[]      @relation("user")
   nutrition       Nutrition[]
 
-  groups Group[]
+  groups         Group[]
+  advertisements Advertisements[]
 }
 
 model Children {
@@ -116,21 +117,26 @@ model Nutrition {
 }
 
 model Notification {
-  id        String  @id @default(uuid(7))
-  isRead    Boolean @default(false)
+  id        String   @id @default(uuid(7))
+  isRead    Boolean  @default(false)
   authorId  String
-  author    User    @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
   toGroupId String
-  toGroup   Group   @relation(fields: [toGroupId], references: [id])
+  toUserId  String
+  createdAt DateTime @default(now())
+  toGroup   Group    @relation(fields: [toGroupId], references: [id])
 }
 
 model Advertisements {
-  id        String @id @default(uuid(7))
-  authorId  String
-  author    User   @relation(fields: [authorId], references: [id])
-  toGroupId String
-  toGroup   Group  @relation(fields: [toGroupId], references: [id])
-  text      String
+  id             String       @id @default(uuid(7))
+  authorId       String
+  author         User         @relation(fields: [authorId], references: [id])
+  toGroupId      String
+  toGroup        Group        @relation(fields: [toGroupId], references: [id])
+  kindergartenId String
+  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id])
+  createdAt      DateTime     @default(now())
+  text           String
 }
 
 model Devices {

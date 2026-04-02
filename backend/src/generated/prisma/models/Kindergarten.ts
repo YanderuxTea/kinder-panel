@@ -194,6 +194,7 @@ export type KindergartenWhereInput = {
   users?: Prisma.UserListRelationFilter
   nutrition?: Prisma.NutritionListRelationFilter
   groups?: Prisma.GroupListRelationFilter
+  advertisements?: Prisma.AdvertisementsListRelationFilter
 }
 
 export type KindergartenOrderByWithRelationInput = {
@@ -207,6 +208,7 @@ export type KindergartenOrderByWithRelationInput = {
   users?: Prisma.UserOrderByRelationAggregateInput
   nutrition?: Prisma.NutritionOrderByRelationAggregateInput
   groups?: Prisma.GroupOrderByRelationAggregateInput
+  advertisements?: Prisma.AdvertisementsOrderByRelationAggregateInput
 }
 
 export type KindergartenWhereUniqueInput = Prisma.AtLeast<{
@@ -223,6 +225,7 @@ export type KindergartenWhereUniqueInput = Prisma.AtLeast<{
   users?: Prisma.UserListRelationFilter
   nutrition?: Prisma.NutritionListRelationFilter
   groups?: Prisma.GroupListRelationFilter
+  advertisements?: Prisma.AdvertisementsListRelationFilter
 }, "id" | "address">
 
 export type KindergartenOrderByWithAggregationInput = {
@@ -259,6 +262,7 @@ export type KindergartenCreateInput = {
   users?: Prisma.UserCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUncheckedCreateInput = {
@@ -271,6 +275,7 @@ export type KindergartenUncheckedCreateInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionUncheckedCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUpdateInput = {
@@ -283,6 +288,7 @@ export type KindergartenUpdateInput = {
   users?: Prisma.UserUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateInput = {
@@ -295,6 +301,7 @@ export type KindergartenUncheckedUpdateInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUncheckedUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenCreateManyInput = {
@@ -464,6 +471,20 @@ export type KindergartenUpdateOneRequiredWithoutNutritionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.KindergartenUpdateToOneWithWhereWithoutNutritionInput, Prisma.KindergartenUpdateWithoutNutritionInput>, Prisma.KindergartenUncheckedUpdateWithoutNutritionInput>
 }
 
+export type KindergartenCreateNestedOneWithoutAdvertisementsInput = {
+  create?: Prisma.XOR<Prisma.KindergartenCreateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedCreateWithoutAdvertisementsInput>
+  connectOrCreate?: Prisma.KindergartenCreateOrConnectWithoutAdvertisementsInput
+  connect?: Prisma.KindergartenWhereUniqueInput
+}
+
+export type KindergartenUpdateOneRequiredWithoutAdvertisementsNestedInput = {
+  create?: Prisma.XOR<Prisma.KindergartenCreateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedCreateWithoutAdvertisementsInput>
+  connectOrCreate?: Prisma.KindergartenCreateOrConnectWithoutAdvertisementsInput
+  upsert?: Prisma.KindergartenUpsertWithoutAdvertisementsInput
+  connect?: Prisma.KindergartenWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KindergartenUpdateToOneWithWhereWithoutAdvertisementsInput, Prisma.KindergartenUpdateWithoutAdvertisementsInput>, Prisma.KindergartenUncheckedUpdateWithoutAdvertisementsInput>
+}
+
 export type KindergartenCreateWithoutUsersInput = {
   id?: string
   address: string
@@ -473,6 +494,7 @@ export type KindergartenCreateWithoutUsersInput = {
   owner: Prisma.UserCreateNestedOneWithoutKindergartenOwnInput
   nutrition?: Prisma.NutritionCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUncheckedCreateWithoutUsersInput = {
@@ -484,6 +506,7 @@ export type KindergartenUncheckedCreateWithoutUsersInput = {
   ownerId: string
   nutrition?: Prisma.NutritionUncheckedCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenCreateOrConnectWithoutUsersInput = {
@@ -500,6 +523,7 @@ export type KindergartenCreateWithoutOwnerInput = {
   users?: Prisma.UserCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUncheckedCreateWithoutOwnerInput = {
@@ -511,6 +535,7 @@ export type KindergartenUncheckedCreateWithoutOwnerInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionUncheckedCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenCreateOrConnectWithoutOwnerInput = {
@@ -543,6 +568,7 @@ export type KindergartenUpdateWithoutUsersInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutKindergartenOwnNestedInput
   nutrition?: Prisma.NutritionUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateWithoutUsersInput = {
@@ -554,6 +580,7 @@ export type KindergartenUncheckedUpdateWithoutUsersInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   nutrition?: Prisma.NutritionUncheckedUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUpsertWithWhereUniqueWithoutOwnerInput = {
@@ -593,6 +620,7 @@ export type KindergartenCreateWithoutGroupsInput = {
   owner: Prisma.UserCreateNestedOneWithoutKindergartenOwnInput
   users?: Prisma.UserCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUncheckedCreateWithoutGroupsInput = {
@@ -604,6 +632,7 @@ export type KindergartenUncheckedCreateWithoutGroupsInput = {
   ownerId: string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutKindergartenInput
   nutrition?: Prisma.NutritionUncheckedCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenCreateOrConnectWithoutGroupsInput = {
@@ -631,6 +660,7 @@ export type KindergartenUpdateWithoutGroupsInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutKindergartenOwnNestedInput
   users?: Prisma.UserUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateWithoutGroupsInput = {
@@ -642,6 +672,7 @@ export type KindergartenUncheckedUpdateWithoutGroupsInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   users?: Prisma.UserUncheckedUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUncheckedUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenCreateWithoutNutritionInput = {
@@ -653,6 +684,7 @@ export type KindergartenCreateWithoutNutritionInput = {
   owner: Prisma.UserCreateNestedOneWithoutKindergartenOwnInput
   users?: Prisma.UserCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenUncheckedCreateWithoutNutritionInput = {
@@ -664,6 +696,7 @@ export type KindergartenUncheckedCreateWithoutNutritionInput = {
   ownerId: string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutKindergartenInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutKindergartenInput
+  advertisements?: Prisma.AdvertisementsUncheckedCreateNestedManyWithoutKindergartenInput
 }
 
 export type KindergartenCreateOrConnectWithoutNutritionInput = {
@@ -691,6 +724,7 @@ export type KindergartenUpdateWithoutNutritionInput = {
   owner?: Prisma.UserUpdateOneRequiredWithoutKindergartenOwnNestedInput
   users?: Prisma.UserUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateWithoutNutritionInput = {
@@ -701,6 +735,71 @@ export type KindergartenUncheckedUpdateWithoutNutritionInput = {
   endSubscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   users?: Prisma.UserUncheckedUpdateManyWithoutKindergartenNestedInput
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput
+}
+
+export type KindergartenCreateWithoutAdvertisementsInput = {
+  id?: string
+  address: string
+  name: string
+  isFreeTier?: boolean
+  endSubscription: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutKindergartenOwnInput
+  users?: Prisma.UserCreateNestedManyWithoutKindergartenInput
+  nutrition?: Prisma.NutritionCreateNestedManyWithoutKindergartenInput
+  groups?: Prisma.GroupCreateNestedManyWithoutKindergartenInput
+}
+
+export type KindergartenUncheckedCreateWithoutAdvertisementsInput = {
+  id?: string
+  address: string
+  name: string
+  isFreeTier?: boolean
+  endSubscription: Date | string
+  ownerId: string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutKindergartenInput
+  nutrition?: Prisma.NutritionUncheckedCreateNestedManyWithoutKindergartenInput
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutKindergartenInput
+}
+
+export type KindergartenCreateOrConnectWithoutAdvertisementsInput = {
+  where: Prisma.KindergartenWhereUniqueInput
+  create: Prisma.XOR<Prisma.KindergartenCreateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedCreateWithoutAdvertisementsInput>
+}
+
+export type KindergartenUpsertWithoutAdvertisementsInput = {
+  update: Prisma.XOR<Prisma.KindergartenUpdateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedUpdateWithoutAdvertisementsInput>
+  create: Prisma.XOR<Prisma.KindergartenCreateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedCreateWithoutAdvertisementsInput>
+  where?: Prisma.KindergartenWhereInput
+}
+
+export type KindergartenUpdateToOneWithWhereWithoutAdvertisementsInput = {
+  where?: Prisma.KindergartenWhereInput
+  data: Prisma.XOR<Prisma.KindergartenUpdateWithoutAdvertisementsInput, Prisma.KindergartenUncheckedUpdateWithoutAdvertisementsInput>
+}
+
+export type KindergartenUpdateWithoutAdvertisementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isFreeTier?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  endSubscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutKindergartenOwnNestedInput
+  users?: Prisma.UserUpdateManyWithoutKindergartenNestedInput
+  nutrition?: Prisma.NutritionUpdateManyWithoutKindergartenNestedInput
+  groups?: Prisma.GroupUpdateManyWithoutKindergartenNestedInput
+}
+
+export type KindergartenUncheckedUpdateWithoutAdvertisementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  isFreeTier?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  endSubscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutKindergartenNestedInput
+  nutrition?: Prisma.NutritionUncheckedUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutKindergartenNestedInput
 }
 
@@ -721,6 +820,7 @@ export type KindergartenUpdateWithoutOwnerInput = {
   users?: Prisma.UserUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateWithoutOwnerInput = {
@@ -732,6 +832,7 @@ export type KindergartenUncheckedUpdateWithoutOwnerInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutKindergartenNestedInput
   nutrition?: Prisma.NutritionUncheckedUpdateManyWithoutKindergartenNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutKindergartenNestedInput
+  advertisements?: Prisma.AdvertisementsUncheckedUpdateManyWithoutKindergartenNestedInput
 }
 
 export type KindergartenUncheckedUpdateManyWithoutOwnerInput = {
@@ -751,12 +852,14 @@ export type KindergartenCountOutputType = {
   users: number
   nutrition: number
   groups: number
+  advertisements: number
 }
 
 export type KindergartenCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | KindergartenCountOutputTypeCountUsersArgs
   nutrition?: boolean | KindergartenCountOutputTypeCountNutritionArgs
   groups?: boolean | KindergartenCountOutputTypeCountGroupsArgs
+  advertisements?: boolean | KindergartenCountOutputTypeCountAdvertisementsArgs
 }
 
 /**
@@ -790,6 +893,13 @@ export type KindergartenCountOutputTypeCountGroupsArgs<ExtArgs extends runtime.T
   where?: Prisma.GroupWhereInput
 }
 
+/**
+ * KindergartenCountOutputType without action
+ */
+export type KindergartenCountOutputTypeCountAdvertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdvertisementsWhereInput
+}
+
 
 export type KindergartenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -802,6 +912,7 @@ export type KindergartenSelect<ExtArgs extends runtime.Types.Extensions.Internal
   users?: boolean | Prisma.Kindergarten$usersArgs<ExtArgs>
   nutrition?: boolean | Prisma.Kindergarten$nutritionArgs<ExtArgs>
   groups?: boolean | Prisma.Kindergarten$groupsArgs<ExtArgs>
+  advertisements?: boolean | Prisma.Kindergarten$advertisementsArgs<ExtArgs>
   _count?: boolean | Prisma.KindergartenCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["kindergarten"]>
 
@@ -840,6 +951,7 @@ export type KindergartenInclude<ExtArgs extends runtime.Types.Extensions.Interna
   users?: boolean | Prisma.Kindergarten$usersArgs<ExtArgs>
   nutrition?: boolean | Prisma.Kindergarten$nutritionArgs<ExtArgs>
   groups?: boolean | Prisma.Kindergarten$groupsArgs<ExtArgs>
+  advertisements?: boolean | Prisma.Kindergarten$advertisementsArgs<ExtArgs>
   _count?: boolean | Prisma.KindergartenCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type KindergartenIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -856,6 +968,7 @@ export type $KindergartenPayload<ExtArgs extends runtime.Types.Extensions.Intern
     users: Prisma.$UserPayload<ExtArgs>[]
     nutrition: Prisma.$NutritionPayload<ExtArgs>[]
     groups: Prisma.$GroupPayload<ExtArgs>[]
+    advertisements: Prisma.$AdvertisementsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1262,6 +1375,7 @@ export interface Prisma__KindergartenClient<T, Null = never, ExtArgs extends run
   users<T extends Prisma.Kindergarten$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kindergarten$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   nutrition<T extends Prisma.Kindergarten$nutritionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kindergarten$nutritionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NutritionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   groups<T extends Prisma.Kindergarten$groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kindergarten$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  advertisements<T extends Prisma.Kindergarten$advertisementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Kindergarten$advertisementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdvertisementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1767,6 +1881,30 @@ export type Kindergarten$groupsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.GroupScalarFieldEnum | Prisma.GroupScalarFieldEnum[]
+}
+
+/**
+ * Kindergarten.advertisements
+ */
+export type Kindergarten$advertisementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Advertisements
+   */
+  select?: Prisma.AdvertisementsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Advertisements
+   */
+  omit?: Prisma.AdvertisementsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdvertisementsInclude<ExtArgs> | null
+  where?: Prisma.AdvertisementsWhereInput
+  orderBy?: Prisma.AdvertisementsOrderByWithRelationInput | Prisma.AdvertisementsOrderByWithRelationInput[]
+  cursor?: Prisma.AdvertisementsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdvertisementsScalarFieldEnum | Prisma.AdvertisementsScalarFieldEnum[]
 }
 
 /**

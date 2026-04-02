@@ -79,7 +79,7 @@ export class AccountsService {
     return { data: data };
   }
   async createAccount(dto: CreateAccount) {
-    const { fullname, password, login, token, email, role } = dto;
+    const { fullname, password, login, token, email, role, groupId } = dto;
     const decodeToken: JwtPayload = this.jwt.decode(token);
     const hashPassword = await bcrypt.hash(password, 10);
     try {
@@ -92,6 +92,7 @@ export class AccountsService {
           login: login,
           email: email,
           kindergartenId: dto.id,
+          groupId: groupId,
         },
         select: {
           id: true,

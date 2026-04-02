@@ -15,7 +15,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.6-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
+[![Project Version](https://img.shields.io/badge/version-alpha_0.7-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -39,9 +39,9 @@
 - [ ] Возможность составлять отчет посещения воспитателю
 - [ ] Возможность администратору садика смотреть отчеты посещения
 - [ ] Просмотр меню на неделю для родителей
-- [ ] Возможность воспитателю оставлять объявления и удалять
-- [ ] Возможность смотреть объявления
-- [ ] Уведомления для родителей, если добавляется объявление
+- [x] Возможность воспитателю оставлять объявления и удалять
+- [x] Возможность смотреть объявления
+- [x] Уведомления для родителей, если добавляется объявление
 
 <h2>Как запустить проект у себя</h2>
 

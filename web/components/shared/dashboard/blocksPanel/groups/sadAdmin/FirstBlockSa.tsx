@@ -112,7 +112,7 @@ export default function FirstBlockSa({
         )}
       </div>
       <div
-        className={`h-100 flex ${groups.length === 0 ? "justify-center items-center" : "flex-col py-3"}`}
+        className={`h-100 flex ${groups.length === 0 ? "justify-center items-center" : "flex-col py-3 gap-2"}`}
       >
         {groups.length === 0 ? (
           <p

@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useEffect,
+  useRef,
   useState,
   useTransition,
 } from "react";
@@ -22,6 +23,7 @@ import { createAccount } from "@/components/forms/panels/action";
 import { toast } from "sonner";
 import { Kindergartens } from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/FirstBlockSA";
 import { AnimatePresence, motion } from "framer-motion";
+import { getGroups, Groups } from "@/components/shared/dashboard/panels/action";
 
 export default function CreateAccountForm({
   setOpenModal,
@@ -35,12 +37,25 @@ export default function CreateAccountForm({
   const [loading, setLoading] = useTransition();
   const [selectKindergartenId, setSelectKindergartenId] = useState<string>("");
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const [openDropdownGroups, setOpenDropdownGroups] = useState<boolean>(false);
+  const [selectGroupId, setSelectGroupId] = useState<string>("");
+  const [groups, setGroups] = useState<Groups[]>([]);
+  const firstRender = useRef<boolean>(true);
   useEffect(() => {
     setLoading(async () => {
       const res = await getKindergartens();
       setKindergartens(res);
     });
   }, []);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    getGroups(selectKindergartenId).then((res) => {
+      setGroups(res.groups);
+    });
+  }, [selectKindergartenId]);
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -57,6 +72,7 @@ export default function CreateAccountForm({
       password,
       role,
       selectKindergartenId,
+      selectGroupId,
     );
     if (res.ok) {
       setOpenModal(false);
@@ -175,7 +191,7 @@ export default function CreateAccountForm({
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col gap-2 absolute inset-x-0 bottom-0 bg-input-light dark:bg-input-dark rounded-2xl border border-border-light dark:border-border-dark p-2 overflow-hidden translate-y-full"
+                className="flex flex-col gap-2 absolute inset-x-0 bottom-0 bg-input-light dark:bg-input-dark rounded-2xl border border-border-light dark:border-border-dark p-2 overflow-hidden translate-y-full z-10"
               >
                 {kindergartens.map((kindergarten) => {
                   return (
@@ -183,7 +199,7 @@ export default function CreateAccountForm({
                       key={`ca-${kindergarten.id}`}
                       className={
                         "cursor-pointer border border-border-light dark:border-border-dark rounded-2xl p-3" +
-                        " text-foreground-light dark:text-foreground-dark"
+                        " text-foreground-light dark:text-foreground-dark "
                       }
                       onClick={() => setSelectKindergartenId(kindergarten.id)}
                     >
@@ -191,6 +207,57 @@ export default function CreateAccountForm({
                     </div>
                   );
                 })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </span>
+      <span
+        onClick={() => setOpenDropdownGroups((prevState) => !prevState)}
+        className={
+          "flex flex-col gap-1 text-sm text-foreground-light" +
+          " dark:text-foreground-dark font-medium select-none"
+        }
+      >
+        Выберите группу
+        <div
+          className={
+            "bg-input-light/30 dark:bg-input-dark/30 border border-border-light dark:border-border-dark" +
+            " rounded-3xl h-12 text-foreground-light dark:text-foreground-dark text-sm font-medium p-3 relative"
+          }
+        >
+          {groups.find((group) => group.id === selectGroupId)?.name ||
+            "Выберите группу"}
+          <AnimatePresence>
+            {openDropdownGroups && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col gap-2 absolute inset-x-0 bottom-0 bg-input-light dark:bg-input-dark rounded-2xl border border-border-light dark:border-border-dark p-2 overflow-hidden translate-y-full"
+              >
+                {selectKindergartenId.length > 0 ? (
+                  groups.length > 0 ? (
+                    groups.map((group) => {
+                      return (
+                        <div
+                          key={`cag-${group.id}`}
+                          className={
+                            "cursor-pointer border border-border-light dark:border-border-dark rounded-2xl p-3" +
+                            " text-foreground-light dark:text-foreground-dark"
+                          }
+                          onClick={() => setSelectGroupId(group.id)}
+                        >
+                          {group.name}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <p>В данном садике нет групп</p>
+                  )
+                ) : (
+                  <p>Выберите садик</p>
+                )}
               </motion.div>
             )}
           </AnimatePresence>

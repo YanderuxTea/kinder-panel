@@ -3,15 +3,23 @@
 import SwitcherThemeButton from "@/components/shared/SwitcherThemeButton";
 import NotificationButton from "@/components/shared/NotificationButton";
 import UserAvatar from "@/components/shared/UserAvatar";
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import {useEffect, useRef, useState} from "react";
+import {AnimatePresence} from "framer-motion";
 import AccountMenu from "@/components/shared/dashboard/AccountMenu";
+import {RolesType} from "@/proxy";
 
-export default function HeaderDashboard({ fullname }: { fullname: string }) {
+export default function HeaderDashboard({
+  fullname,
+  role,
+}: {
+  fullname: string;
+  role: RolesType;
+}) {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [openNotifyPanel, setOpenNotifyPanel] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     function handleToggleMenu(e: Event) {
       const target = e.target as Node;
@@ -40,10 +48,13 @@ export default function HeaderDashboard({ fullname }: { fullname: string }) {
       }
     >
       <SwitcherThemeButton />
-      <NotificationButton
-        openNotifyPanel={openNotifyPanel}
-        setOpenNotifyPanelAction={setOpenNotifyPanel}
-      />
+
+      {role === "user" && (
+        <NotificationButton
+          openNotifyPanel={openNotifyPanel}
+          setOpenNotifyPanelAction={setOpenNotifyPanel}
+        />
+      )}
       <div
         ref={buttonRef}
         className={

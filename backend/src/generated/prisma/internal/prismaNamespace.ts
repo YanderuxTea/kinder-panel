@@ -1200,7 +1200,9 @@ export const NotificationScalarFieldEnum = {
   id: 'id',
   isRead: 'isRead',
   authorId: 'authorId',
-  toGroupId: 'toGroupId'
+  toGroupId: 'toGroupId',
+  toUserId: 'toUserId',
+  createdAt: 'createdAt'
 } as const
 
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
@@ -1210,6 +1212,8 @@ export const AdvertisementsScalarFieldEnum = {
   id: 'id',
   authorId: 'authorId',
   toGroupId: 'toGroupId',
+  kindergartenId: 'kindergartenId',
+  createdAt: 'createdAt',
   text: 'text'
 } as const
 
