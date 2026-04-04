@@ -5,6 +5,9 @@ import { ReactNode } from "react";
 import FirstBlockSA from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/FirstBlockSA";
 import FirstBLockGA from "@/components/shared/dashboard/blocksPanel/main/glAdmin/FirstBLockGA";
 import SecondBlockSA from "@/components/shared/dashboard/blocksPanel/main/sadAdmin/SecondBlockSA";
+import FirstBlockUser from "@/components/shared/dashboard/blocksPanel/main/user/FirstBlockUser";
+import SecondBlockUser from "@/components/shared/dashboard/blocksPanel/main/user/SecondBlockUser";
+import FirstBlockStaff from "@/components/shared/dashboard/blocksPanel/main/staff/FirstBlockStaff";
 
 export default function MainPanel({
   fullname,
@@ -20,13 +23,13 @@ export default function MainPanel({
     gl_admin: "Вы являетесь Администратором сайта",
   };
   const firstBlock: Record<RolesType, ReactNode> = {
-    user: null,
-    staff: null,
+    user: <FirstBlockUser />,
+    staff: <FirstBlockStaff />,
     sad_admin: <FirstBlockSA />,
     gl_admin: <FirstBLockGA />,
   };
   const secondBlock: Record<RolesType, ReactNode> = {
-    user: null,
+    user: <SecondBlockUser />,
     staff: null,
     sad_admin: <SecondBlockSA />,
     gl_admin: null,

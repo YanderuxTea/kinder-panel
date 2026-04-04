@@ -14,6 +14,8 @@ import { NutritionModule } from './nutrition/nutrition.module.js';
 import { GroupsModule } from './groups/groups.module.js';
 import { AdvertisementsModule } from './advertisements/advertisements.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
+import { UserMainModule } from './user-main/user-main.module.js';
+import { StaffMainModule } from './staff-main/staff-main.module.js';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { NotificationsModule } from './notifications/notifications.module.js';
     GroupsModule,
     AdvertisementsModule,
     NotificationsModule,
+    UserMainModule,
+    StaffMainModule,
   ],
   controllers: [AppController],
   providers: [AppService],

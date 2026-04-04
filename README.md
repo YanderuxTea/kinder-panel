@@ -5,7 +5,7 @@
 </h1>
 
 [![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-16.2.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
@@ -15,7 +15,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.7-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
+[![Project Version](https://img.shields.io/badge/version-alpha_0.8-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -38,7 +38,7 @@
 - [ ] Возможность заранее отмечать родителям статусы (опоздает/не придет) с причиной
 - [ ] Возможность составлять отчет посещения воспитателю
 - [ ] Возможность администратору садика смотреть отчеты посещения
-- [ ] Просмотр меню на неделю для родителей
+- [x] Просмотр меню текущего дня недели для родителей
 - [x] Возможность воспитателю оставлять объявления и удалять
 - [x] Возможность смотреть объявления
 - [x] Уведомления для родителей, если добавляется объявление

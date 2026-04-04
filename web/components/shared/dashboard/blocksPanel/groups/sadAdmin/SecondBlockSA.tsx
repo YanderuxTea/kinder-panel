@@ -92,7 +92,7 @@ export default function SecondBlockSA({
       <div
         className={`h-100 flex ${
           selectIdKindergarten.length > 0 && childArray.length > 0
-            ? "flex-col"
+            ? "flex-col gap-2"
             : "justify-center" + " items-center"
         }`}
       >
