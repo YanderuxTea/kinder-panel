@@ -89,14 +89,14 @@ model Group {
 }
 
 model Attendance {
-  id          String             @id @default(uuid(7))
-  mark        StatusAttendance
-  childrenId  String
-  children    Children           @relation(fields: [childrenId], references: [id], onDelete: Cascade)
-  createdAt   DateTime
-  predictMark PredictAttendance?
+  id         String           @id @default(uuid(7))
+  mark       StatusAttendance
+  childrenId String
+  children   Children         @relation(fields: [childrenId], references: [id], onDelete: Cascade)
+  createdAt  DateTime
+  reason     String?
 
-  @@unique([childrenId, createdAt])
+  @@index([createdAt])
 }
 
 model Nutrition {

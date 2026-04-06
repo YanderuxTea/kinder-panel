@@ -16,6 +16,7 @@ import { AdvertisementsModule } from './advertisements/advertisements.module.js'
 import { NotificationsModule } from './notifications/notifications.module.js';
 import { UserMainModule } from './user-main/user-main.module.js';
 import { StaffMainModule } from './staff-main/staff-main.module.js';
+import { VisitsModule } from './visits/visits.module.js';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { StaffMainModule } from './staff-main/staff-main.module.js';
     NotificationsModule,
     UserMainModule,
     StaffMainModule,
+    VisitsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

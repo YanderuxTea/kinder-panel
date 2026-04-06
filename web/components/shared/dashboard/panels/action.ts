@@ -1,7 +1,8 @@
 "use server";
-import {cookies} from "next/headers";
-import {Query} from "@/components/shared/dashboard/panels/AdminPanel";
-import {Advertisement} from "@/components/forms/panels/action";
+import { cookies } from "next/headers";
+import { Query } from "@/components/shared/dashboard/panels/AdminPanel";
+import { Advertisement } from "@/components/forms/panels/action";
+import { Attendance } from "@/hook/getAttendanceConfig";
 
 export async function getDataForSettings() {
   const cookieStorage = await cookies();
@@ -303,5 +304,57 @@ export async function deleteAdvertisement(id: string) {
     },
   );
   const res: { ok: boolean } = await req.json();
+  return res;
+}
+export type MonthInformation = {
+  mark: Attendance;
+  createdAt: Date;
+  reason: string | null;
+};
+export async function getMonthInformation(
+  id: string,
+  year: number,
+  month: number,
+) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/visits/get-month-information`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, id, year, month }),
+    },
+  );
+  const res: { data: MonthInformation[] } = await req.json();
+  return res;
+}
+export async function getHistory(id: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(`${process.env.BACKEND_URL}/visits/get-history`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token, id }),
+  });
+  const res: {
+    data: { data: MonthInformation[]; cursor: string; hasMore: boolean };
+  } = await req.json();
+  return res;
+}
+export async function fetchMoreHistory(id: string, cursor: string) {
+  const cookieStorage = await cookies();
+  const token = cookieStorage.get("token-kinder-panel")?.value;
+  const req = await fetch(
+    `${process.env.BACKEND_URL}/visits/fetch-more-history`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, id, cursor }),
+    },
+  );
+  const res: {
+    data: { data: MonthInformation[]; cursor: string; hasMore: boolean };
+  } = await req.json();
   return res;
 }

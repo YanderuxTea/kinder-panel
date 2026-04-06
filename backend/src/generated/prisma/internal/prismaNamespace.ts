@@ -1173,7 +1173,7 @@ export const AttendanceScalarFieldEnum = {
   mark: 'mark',
   childrenId: 'childrenId',
   createdAt: 'createdAt',
-  predictMark: 'predictMark'
+  reason: 'reason'
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
@@ -1321,20 +1321,6 @@ export type EnumStatusAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'StatusAttendance[]'
  */
 export type ListEnumStatusAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAttendance[]'>
-    
-
-
-/**
- * Reference to a field of type 'PredictAttendance'
- */
-export type EnumPredictAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PredictAttendance'>
-    
-
-
-/**
- * Reference to a field of type 'PredictAttendance[]'
- */
-export type ListEnumPredictAttendanceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PredictAttendance[]'>
     
 
 

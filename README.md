@@ -15,7 +15,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.8-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
+[![Project Version](https://img.shields.io/badge/version-alpha_0.9-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -35,7 +35,7 @@
 - [x] Создание аккаунтов воспитателей и родителей администратором садика
 - [x] Личный кабинет для пользователей / вкладка настройки
 - [x] Страница создания меню садика для администраторов садика
-- [ ] Возможность заранее отмечать родителям статусы (опоздает/не придет) с причиной
+- [x] Возможность заранее отмечать родителям статусы (Посещает/Болен/Отсутствует) с причиной
 - [ ] Возможность составлять отчет посещения воспитателю
 - [ ] Возможность администратору садика смотреть отчеты посещения
 - [x] Просмотр меню текущего дня недели для родителей

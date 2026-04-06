@@ -134,7 +134,7 @@ export const AttendanceScalarFieldEnum = {
   mark: 'mark',
   childrenId: 'childrenId',
   createdAt: 'createdAt',
-  predictMark: 'predictMark'
+  reason: 'reason'
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]

@@ -55,7 +55,6 @@ export class GroupsService {
         },
       },
     });
-    console.log(subscription);
     if (subscription) {
       return { ok: false, message: 'Подписка просрочена' };
     }
