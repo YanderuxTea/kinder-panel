@@ -204,7 +204,10 @@ export async function getGroups(id: string) {
   const res: { groups: Groups[] } = await req.json();
   return res;
 }
-export async function createGroup(idKindergarten: string, nameGroup: string) {
+export async function createGroup(
+  idKindergarten: string,
+  nameGroup: string,
+): Promise<{ ok: true; group: Groups } | { ok: false; message: string }> {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token-kinder-panel")?.value;
   if (nameGroup.trim().length === 0) {
@@ -256,7 +259,13 @@ export async function createChild(data: {
       } = await req.json();
   return res;
 }
-export async function getAdvertisements() {
+export async function getAdvertisements(): Promise<
+  | { ok: false }
+  | {
+      ok: true;
+      data: { data: Advertisement[]; hasMore: boolean; cursor: string };
+    }
+> {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token-kinder-panel")?.value;
   const req = await fetch(
@@ -267,14 +276,15 @@ export async function getAdvertisements() {
       body: JSON.stringify({ token }),
     },
   );
-  const res:
-    | { ok: false }
-    | {
-        data: { data: Advertisement[]; hasMore: boolean; cursor: string };
-      } = await req.json();
-  return res;
+  return await req.json();
 }
-export async function fetchMoreAdvertisements(cursor: string) {
+export async function fetchMoreAdvertisements(cursor: string): Promise<
+  | { ok: false }
+  | {
+      ok: true;
+      data: { data: Advertisement[]; hasMore: boolean; cursor: string };
+    }
+> {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token-kinder-panel")?.value;
   const req = await fetch(
@@ -285,12 +295,7 @@ export async function fetchMoreAdvertisements(cursor: string) {
       body: JSON.stringify({ token: token, cursor: cursor }),
     },
   );
-  const res:
-    | { ok: false }
-    | {
-        data: { data: Advertisement[]; hasMore: boolean; cursor: string };
-      } = await req.json();
-  return res;
+  return await req.json();
 }
 export async function deleteAdvertisement(id: string) {
   const cookieStorage = await cookies();

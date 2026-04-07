@@ -90,7 +90,7 @@ export default function SecondBlockSA({
         )}
       </div>
       <div
-        className={`h-100 flex ${
+        className={`h-100 overflow-y-auto flex ${
           selectIdKindergarten.length > 0 && childArray.length > 0
             ? "flex-col gap-2"
             : "justify-center" + " items-center"

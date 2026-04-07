@@ -7,6 +7,7 @@ import { GetInformation } from './dto/get-information.dto.js';
 import { GetHistory } from './dto/get-history.dto.js';
 import { FetchMoreHistory } from './dto/fetch-more-history.dto.js';
 import { MarkedVisit } from './dto/marked-visit.dto.js';
+import { GetKindergartenInformation } from './dto/get-kindergarten-information.dto.js';
 
 @Controller('visits')
 export class VisitsController {
@@ -40,5 +41,17 @@ export class VisitsController {
   @Post('marked-visit')
   markedVisit(@Body() dto: MarkedVisit) {
     return this.visitsService.markedVisit(dto);
+  }
+  @UseGuards(AuthGuard)
+  @Roles('staff')
+  @Post('get-children-staff')
+  getChildrenStaff(@Body() dto: GetChildren) {
+    return this.visitsService.getChildrenStaff(dto);
+  }
+  @UseGuards(AuthGuard)
+  @Roles('sad_admin')
+  @Post('get-kindergarten-information')
+  getKindergartenInformation(@Body() dto: GetKindergartenInformation) {
+    return this.visitsService.getKindergartenInformation(dto);
   }
 }

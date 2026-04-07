@@ -161,7 +161,9 @@ export type Advertisement = {
     } | null;
   };
 };
-export async function createAdvertisements(text: string) {
+export async function createAdvertisements(
+  text: string,
+): Promise<{ ok: true; data: Advertisement } | { ok: false; message: string }> {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token-kinder-panel")?.value;
   if (text.length === 0) {

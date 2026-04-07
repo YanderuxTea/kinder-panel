@@ -26,19 +26,23 @@ export default function AdvertisementsPanel({ role }: { role: RolesType }) {
   const [advertisements, setAdvertisements] = useState<Advertisement[]>([]);
   async function fetchMoreAdvertisementsFunc() {
     const res = await fetchMoreAdvertisements(cursor);
-    if (res.data) {
-      setAdvertisements((prevState) => [...prevState, ...res.data.data]);
-      setCursor(res.data.cursor);
-      setHasMore(res.data.hasMore);
+    if (!res.ok) {
+      toast.error("Неизвестная ошибка");
+      return;
     }
+    setAdvertisements((prevState) => [...prevState, ...res.data.data]);
+    setCursor(res.data.cursor);
+    setHasMore(res.data.hasMore);
   }
   useEffect(() => {
-    getAdvertisements().then((res) => {
-      if (res.data) {
-        setAdvertisements(res.data.data);
-        setCursor(res.data.cursor);
-        setHasMore(res.data.hasMore);
+    getAdvertisements().then((response) => {
+      if (!response.ok) {
+        toast.error("Неизвестная ошибка");
+        return;
       }
+      setAdvertisements(response.data.data);
+      setCursor(response.data.cursor);
+      setHasMore(response.data.hasMore);
     });
   }, []);
   const formatter = Intl.DateTimeFormat("ru-RU", {

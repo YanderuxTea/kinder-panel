@@ -15,7 +15,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-1EBEBA?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-FFF42B?style=for-the-badge&logo=framer&logoColor=black)](https://www.framer.com/motion/)
 
-[![Project Version](https://img.shields.io/badge/version-alpha_0.9-red?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
+[![Project Version](https://img.shields.io/badge/version_1.0-brightgreen?style=flat-square)](https://github.com/YanderuxTea/kinder-panel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 </div>
@@ -36,8 +36,8 @@
 - [x] Личный кабинет для пользователей / вкладка настройки
 - [x] Страница создания меню садика для администраторов садика
 - [x] Возможность заранее отмечать родителям статусы (Посещает/Болен/Отсутствует) с причиной
-- [ ] Возможность отмечать детей воспитателю группы
-- [ ] Возможность администратору садика смотреть отчеты посещения
+- [x] Возможность отмечать детей воспитателю группы
+- [x] Возможность администратору садика смотреть отчеты посещения
 - [x] Просмотр меню текущего дня недели для родителей
 - [x] Возможность воспитателю оставлять объявления и удалять
 - [x] Возможность смотреть объявления

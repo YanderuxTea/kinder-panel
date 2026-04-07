@@ -12,6 +12,8 @@ import {
   getMonthInformation,
   MonthInformation,
 } from "@/components/shared/dashboard/panels/action";
+import FirstBlockStaff from "@/components/shared/dashboard/blocksPanel/visits/staff/FirstBlockStaff";
+import FirstBlockSA from "@/components/shared/dashboard/blocksPanel/visits/sad_admin/FirstBlockSA";
 
 export default function VisitsPanel({ role }: { role: RolesType }) {
   const [selectChildId, setSelectChildId] = useState<string>("");
@@ -35,7 +37,7 @@ export default function VisitsPanel({ role }: { role: RolesType }) {
     setHasMore(hasMore);
   }
   useEffect(() => {
-    if (firstRender.current || loading.current) {
+    if (firstRender.current || loading.current || role !== "user") {
       return;
     }
     loading.current = true;
@@ -59,7 +61,7 @@ export default function VisitsPanel({ role }: { role: RolesType }) {
     });
   }, [selectChildId]);
   useEffect(() => {
-    if (firstRender.current) {
+    if (firstRender.current || role !== "user") {
       firstRender.current = false;
       return;
     }
@@ -90,8 +92,8 @@ export default function VisitsPanel({ role }: { role: RolesType }) {
         setSelectChildId={setSelectChildId}
       />
     ),
-    staff: null,
-    sad_admin: null,
+    staff: <FirstBlockStaff />,
+    sad_admin: <FirstBlockSA />,
     gl_admin: null,
   };
   const secondBlock: Record<RolesType, ReactNode> = {

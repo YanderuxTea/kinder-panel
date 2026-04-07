@@ -8,6 +8,7 @@ import { GetInformation } from './dto/get-information.dto.js';
 import { GetHistory } from './dto/get-history.dto.js';
 import { FetchMoreHistory } from './dto/fetch-more-history.dto.js';
 import { MarkedVisit } from './dto/marked-visit.dto.js';
+import { GetKindergartenInformation } from './dto/get-kindergarten-information.dto.js';
 
 @Injectable()
 export class VisitsService {
@@ -143,5 +144,41 @@ export class VisitsService {
         return { ok: false };
       }
     }
+  }
+  async getChildrenStaff(dto: GetChildren) {
+    const { token } = dto;
+    const decodeToken: JwtPayload = this.jwt.decode(token);
+    const children = await this.prisma.children.findMany({
+      where: { groupId: decodeToken.groupId },
+      select: {
+        id: true,
+        name: true,
+        surname: true,
+        attendances: {
+          select: { mark: true, createdAt: true, reason: true },
+          take: 1,
+          orderBy: { createdAt: 'desc' },
+        },
+      },
+    });
+    return { data: children };
+  }
+  async getKindergartenInformation(dto: GetKindergartenInformation) {
+    const { id, date } = dto;
+    const information = await this.prisma.group.findMany({
+      where: { kindergartenId: id },
+      select: {
+        name: true,
+        id: true,
+        _count: { select: { childrens: true } },
+        childrens: {
+          where: { attendances: { some: { createdAt: date } } },
+          select: {
+            attendances: { where: { createdAt: date }, select: { mark: true } },
+          },
+        },
+      },
+    });
+    return { data: information };
   }
 }

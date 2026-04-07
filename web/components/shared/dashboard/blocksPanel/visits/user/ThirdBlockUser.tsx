@@ -14,7 +14,8 @@ export default function ThirdBlockUser({
     },
     { sick: 0, absent: 0, came: 0 },
   );
-  const percent = (splitAttendance.came / monthAttendance.length) * 100 || 0;
+  const percent =
+    Math.ceil((splitAttendance.came / monthAttendance.length) * 100) || 0;
   return (
     <div className={"flex flex-col gap-6"}>
       <p

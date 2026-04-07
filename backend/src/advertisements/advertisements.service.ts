@@ -22,7 +22,7 @@ export class AdvertisementsService {
     const pageSize = 30;
     const cache = await this.redis.get(redisKey);
     if (cache) {
-      return { data: JSON.parse(cache) };
+      return { ok: true, data: JSON.parse(cache) };
     }
     if (decodeToken.role === 'sad_admin') {
       const kindergartenIds = await this.prisma.user.findUnique({
@@ -58,7 +58,7 @@ export class AdvertisementsService {
           cursor: cursor,
         };
         await this.redis.set(redisKey, JSON.stringify(fullData), 'EX', 360);
-        return { data: fullData };
+        return { ok: true, data: fullData };
       } else {
         return { ok: false };
       }
@@ -94,7 +94,7 @@ export class AdvertisementsService {
           hasMore: hasMore,
           cursor: cursor,
         };
-        return { data: fullData };
+        return { ok: true, data: fullData };
       } else {
         return { ok: false };
       }
@@ -186,7 +186,7 @@ export class AdvertisementsService {
           hasMore: hasMore,
           cursor: newCursor,
         };
-        return { data: fullData };
+        return { ok: true, data: fullData };
       } else {
         return { ok: false };
       }
@@ -222,7 +222,7 @@ export class AdvertisementsService {
           hasMore: hasMore,
           cursor: newCursor,
         };
-        return { data: fullData };
+        return { ok: true, data: fullData };
       } else {
         return { ok: false };
       }

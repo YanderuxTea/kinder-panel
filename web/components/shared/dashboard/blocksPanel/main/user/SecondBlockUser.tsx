@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getNutrition, NutritionUser } from "@/components/shared/dashboard/blocksPanel/main/user/action";
+import {
+  getNutrition,
+  NutritionUser,
+} from "@/components/shared/dashboard/blocksPanel/main/user/action";
 
 export default function SecondBlockUser() {
   const [nutrition, setNutrition] = useState<NutritionUser | null>(null);
@@ -58,9 +61,10 @@ export default function SecondBlockUser() {
           );
 
           const diffMinute = (startTotalMinutes - nowTotalMinutes) % 60;
-          const splitEndTimePrev = i > 0 ? endTime[i - 1].split(":") : 0;
-          const prevEndMinute = i > 0 ? Number(splitEndTimePrev[1]) : 0;
-          const prevEndHour = i > 0 ? Number(splitEndTimePrev[0]) : 0;
+          const splitEndTimePrev =
+            i > 0 ? endTime[i - 1].split(":") : ["0", "0"];
+          const prevEndMinute = Number(splitEndTimePrev[1]);
+          const prevEndHour = Number(splitEndTimePrev[0]);
           const prevEndTotalMinutes = prevEndHour * 60 + prevEndMinute;
           const diffTimes = startTotalMinutes - prevEndTotalMinutes;
           const diffStartCurrentTimes = nowTotalMinutes - prevEndTotalMinutes;

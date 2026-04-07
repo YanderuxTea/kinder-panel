@@ -112,7 +112,7 @@ export default function FirstBlockSa({
         )}
       </div>
       <div
-        className={`h-100 flex ${groups.length === 0 ? "justify-center items-center" : "flex-col py-3 gap-2"}`}
+        className={`h-100 overflow-y-auto flex ${groups.length === 0 ? "justify-center items-center" : "flex-col py-3 gap-2"}`}
       >
         {groups.length === 0 ? (
           <p
@@ -179,7 +179,7 @@ export default function FirstBlockSa({
               <form className={"flex flex-col gap-2"} onSubmit={handleSubmit}>
                 <Input
                   style={{ height: 40 }}
-                  placeholder={"Название садика"}
+                  placeholder={"Название группы"}
                   errorPack={{ isEnableError: false }}
                   id={"nameGroupId"}
                   name={"name"}

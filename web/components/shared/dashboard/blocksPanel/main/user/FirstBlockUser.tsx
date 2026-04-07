@@ -5,6 +5,7 @@ import {
   getChildren,
 } from "@/components/shared/dashboard/blocksPanel/main/user/action";
 import UserAvatar from "@/components/shared/UserAvatar";
+import { getAttendanceConfig } from "@/hook/getAttendanceConfig";
 
 export default function FirstBlockUser() {
   const [children, setChildren] = useState<Children[]>([]);
@@ -14,7 +15,7 @@ export default function FirstBlockUser() {
     });
   }, []);
   function calculatedAge(birthDate: Date) {
-    const today = new Date(Date.now());
+    const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (
@@ -41,6 +42,10 @@ export default function FirstBlockUser() {
       >
         {children.length > 0 ? (
           children.map((child) => {
+            const configAttendance =
+              child.attendances.length > 0
+                ? getAttendanceConfig(child.attendances[0].mark, "md")
+                : 0;
             return (
               <div
                 key={child.id}
@@ -86,7 +91,15 @@ export default function FirstBlockUser() {
                       0,
                       0,
                       0,
-                    ) === new Date(Date.now()).setHours(0, 0, 0, 0) ? null : (
+                    ) === new Date().setHours(0, 0, 0, 0) ? (
+                      typeof configAttendance !== "number" && (
+                        <div
+                          className={`${configAttendance.color} rounded-lg flex items-center justify-center w-8 aspect-square mx-auto`}
+                        >
+                          {configAttendance.icon}
+                        </div>
+                      )
+                    ) : (
                       <p
                         className={
                           "text-muted-light-foreground" +

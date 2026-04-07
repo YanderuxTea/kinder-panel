@@ -63,6 +63,10 @@ export async function proxy(request: NextRequest) {
         headers: { "Content-Type": "application/json" },
       });
       const res = await req.json();
+      if (!res.ok) {
+        cookieStorage.delete("token-kinder-panel");
+        return NextResponse.redirect(new URL("/", request.url));
+      }
       response.headers.set("x-user-role", res.data.role);
       response.headers.set(
         "x-user-fullname",
