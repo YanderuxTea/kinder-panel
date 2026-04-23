@@ -80,7 +80,7 @@ model Group {
   name           String
   users          User[]
   kindergartenId String
-  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id])
+  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id], onDelete: Cascade)
   childrens      Children[]
 
   notifications Notification[]
@@ -120,21 +120,21 @@ model Notification {
   id        String   @id @default(uuid(7))
   isRead    Boolean  @default(false)
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   toGroupId String
   toUserId  String
   createdAt DateTime @default(now())
-  toGroup   Group    @relation(fields: [toGroupId], references: [id])
+  toGroup   Group    @relation(fields: [toGroupId], references: [id], onDelete: Cascade)
 }
 
 model Advertisements {
   id             String       @id @default(uuid(7))
   authorId       String
-  author         User         @relation(fields: [authorId], references: [id])
+  author         User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   toGroupId      String
-  toGroup        Group        @relation(fields: [toGroupId], references: [id])
+  toGroup        Group        @relation(fields: [toGroupId], references: [id], onDelete: Cascade)
   kindergartenId String
-  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id])
+  kindergarten   Kindergarten @relation(fields: [kindergartenId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now())
   text           String
 }
